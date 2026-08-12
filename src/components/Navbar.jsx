@@ -3,8 +3,9 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, FileText } from 'lucide-react';
 
 const navItems = [
-  { to: '/work', label: 'Work' },
-  { to: '/ml', label: 'ML / Data' },
+  { to: '/', label: 'Home' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/experience', label: 'Experience' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ];
@@ -40,7 +41,8 @@ export default function Navbar() {
           {/* Brand */}
           <Link to="/" className="nav-brand">
             <span className="brand-dot" />
-            <span className="name-brand">Ayush</span><span style={{ color: 'var(--orange)' }}>.</span>
+            <span className="name-brand hide-mobile">AYUSH / SHANDILYA</span>
+            <span className="name-brand show-mobile">AYUSH</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -61,12 +63,12 @@ export default function Navbar() {
           {/* Desktop Resume CTA */}
           <a
             href="#"
-            className="btn btn-primary btn-sm hide-mobile"
+            className="nav-link hide-mobile resume-link"
             target="_blank"
             rel="noreferrer"
+            style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}
           >
-            <FileText size={14} />
-            Resume
+            Resume <span>↗</span>
           </a>
 
           {/* Hamburger */}
@@ -75,7 +77,7 @@ export default function Navbar() {
             aria-label="Toggle menu"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={22} /> : <span style={{ fontSize: '1.25rem' }}>☰</span>}
           </button>
         </div>
       </header>

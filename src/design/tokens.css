@@ -1,0 +1,51 @@
+/* src/design/tokens.css */
+/* Modern Luxury Design Tokens */
+:root {
+  /* Primary Colors */
+  --color-primary: #0A3D62; /* deep navy */
+  --color-primary-dark: #08223A;
+  --color-primary-light: #1E5A8A;
+
+  /* Accent Colors */
+  --color-accent: #D4A853; /* premium gold */
+  --color-accent-light: #E8C878;
+  --color-accent-dark: #B8873C;
+
+  /* Backgrounds */
+  --color-bg: #0C0A08;
+  --color-surface: #141210;
+  --color-card: #181410;
+
+  /* Text */
+  --color-text-primary: #F5F0E8;
+  --color-text-secondary: #9A8878;
+  --color-text-muted: #6B5A4E;
+
+  /* Borders */
+  --color-border: #2A2420;
+  --color-border-warm: #3A3028;
+  --color-border-accent: rgba(212, 168, 83, 0.28);
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Typography */
+  --font-display: 'Playfair Display', serif;
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+}
+
+/* Global resets */
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+html { font-size: 100%; scroll-behavior: smooth; }
+body { background: var(--color-bg); color: var(--color-text-primary); font-family: var(--font-body); line-height:1.6; overflow-x:hidden; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset:2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration:0.001ms !important; animation-duration:0.001ms !important; scroll-behavior:auto !important; } }

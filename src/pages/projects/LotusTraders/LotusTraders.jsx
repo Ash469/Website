@@ -1,19 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
-import { getProject } from '../../data/projects';
-
-const project = getProject('lotus-traders');
+const project = {
+  engineeringDecisions: [
+    {
+      decision: 'Document reference graph in MongoDB for related products',
+      reason: 'Allowed flexible product recommendations without rigid relational schema constraints.'
+    },
+    {
+      decision: 'Next.js ISR (Incremental Static Regeneration)',
+      reason: 'Provided instant page loads for static catalogue pages while preserving dynamic updates.'
+    }
+  ],
+  challenges: [
+    'Digitizing a 150+ product paper catalogue from scratch with custom specifications and high-res imagery.',
+    'Designing an intuitive enquiry routing system tailored for high-value B2B construction machinery.'
+  ],
+  tech: ['Next.js', 'React', 'TypeScript', 'MongoDB', 'Node.js', 'Tailwind CSS']
+};
 
 export default function LotusTraders() {
   return (
     <div style={{ paddingTop: '68px' }}>
       <div className="case-study-hero">
         <div className="container-site">
-          <Link to="/work" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'none', marginBottom: '2.5rem', transition: 'color 0.2s' }}
+          <Link to="/projects" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'none', marginBottom: '2.5rem', transition: 'color 0.2s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}>
-            <ArrowLeft size={14} /> Back to Work
+            <ArrowLeft size={14} /> Back to Projects
           </Link>
 
           <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>

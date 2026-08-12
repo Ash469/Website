@@ -1,9 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
-import { getProject } from '../../data/projects';
-
-const project = getProject('pims');
+const project = {
+  workflow: [
+    { title: 'Student Request', desc: 'Student selects leave dates, destination, and reason in the Flutter app.' },
+    { title: 'Parent Approval', desc: 'Push notification & SMS sent to parent; parent approves via web link or app.' },
+    { title: 'Warden Verification', desc: 'Warden reviews pending requests on their dashboard and approves.' },
+    { title: 'QR Pass Generation', desc: 'Signed, time-limited QR pass generated on student phone upon warden approval.' },
+    { title: 'Gate Verification', desc: 'Campus security scans student QR pass at the exit gate; status updates to "Out".' }
+  ],
+  engineeringDecisions: [
+    {
+      decision: 'Signed time-bound QR tokens for gate scanning',
+      reason: 'Prevented screenshot sharing and stale pass reuse at security checkpoints.'
+    },
+    {
+      decision: 'Multi-channel notifications (FCM + SMS + Email)',
+      reason: 'Ensured parents and wardens received real-time alerts regardless of app installation.'
+    }
+  ],
+  challenges: [
+    'Ensuring zero latency during QR code verification at the gate under fluctuating campus Wi-Fi.',
+    'Handling complex edge-case state transitions when a leave request is cancelled or modified mid-chain.'
+  ]
+};
 
 export default function PIMS() {
   return (
@@ -11,10 +31,10 @@ export default function PIMS() {
       {/* Hero */}
       <div className="case-study-hero">
         <div className="container-site">
-          <Link to="/work" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'none', marginBottom: '2.5rem', transition: 'color 0.2s' }}
+          <Link to="/projects" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'none', marginBottom: '2.5rem', transition: 'color 0.2s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}>
-            <ArrowLeft size={14} /> Back to Work
+            <ArrowLeft size={14} /> Back to Projects
           </Link>
 
           <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>

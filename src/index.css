@@ -18,6 +18,15 @@
 
   /* Borders */
   --border:        #2A2420;
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
   --border-warm:   #3A3028;
   --border-orange: rgba(232, 98, 42, 0.28);
 
@@ -929,11 +938,14 @@ a {
 /* ============================================================
    RESPONSIVE UTILITIES
 ============================================================ */
+.show-mobile { display: none !important; }
+
 @media (max-width: 1024px) {
   .hide-tablet { display: none !important; }
 }
 
 @media (max-width: 768px) {
   .hide-mobile { display: none !important; }
+  .show-mobile { display: inline-block !important; }
   h1 { font-size: clamp(2rem, 8vw, 3rem); }
 }

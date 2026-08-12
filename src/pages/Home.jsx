@@ -12,19 +12,67 @@ import {
   Globe,
   Database,
 } from 'lucide-react';
-import { featuredProjects, additionalProjects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
 import domainExpansionSound from '../../domainExpansion.mp3';
 import domainImage from '../../domain.png';
 
+const projects = [
+  {
+    id: 'techniche',
+    slug: 'techniche',
+    name: 'Techniche',
+    tagline: 'Full-Stack · DevOps · Android',
+    category: 'Web & Platforms',
+    status: 'live',
+    shortDesc: 'Production event technology ecosystem for IIT Guwahati\'s annual technical festival.',
+    metrics: [{ value: '81K+', label: 'Visitors' }, { value: '2.3M', label: 'Requests' }],
+    tech: ['AWS EC2', 'Nginx', 'Docker', 'React', 'Node.js', 'Flutter'],
+    featured: true
+  },
+  {
+    id: 'pims',
+    slug: 'pims',
+    name: 'PIMS / Ease Exit',
+    tagline: 'Mobile · Backend · Firebase',
+    category: 'Mobile',
+    status: 'live',
+    shortDesc: 'Smart leave management and student verification system with multi-stage approval workflow.',
+    metrics: [{ value: '2K+', label: 'Downloads' }],
+    tech: ['Flutter', 'Node.js', 'MongoDB', 'Firebase'],
+    featured: true
+  },
+  {
+    id: 'lotus-traders',
+    slug: 'lotus-traders',
+    name: 'Lotus Traders Machinery',
+    tagline: 'Full-Stack · Next.js',
+    category: 'Web & Platforms',
+    status: 'live',
+    shortDesc: 'Construction machinery catalogue and B2B enquiry routing platform for a real client.',
+    metrics: [{ value: '150+', label: 'Products' }],
+    tech: ['Next.js', 'React', 'TypeScript', 'MongoDB'],
+    featured: true
+  },
+  {
+    id: 'nss',
+    slug: 'nss',
+    name: 'NSS IIT Guwahati',
+    tagline: 'Full-Stack · Google Sheets API',
+    category: 'Web & Platforms',
+    status: 'live',
+    shortDesc: 'Official NSS website with a self-service work-hours lookup system for students.',
+    metrics: [{ value: 'Real-time', label: 'Lookup' }],
+    tech: ['React', 'Node.js', 'Google Sheets API'],
+    featured: true
+  }
+];
+
 /* ── Hero metrics ── */
 const heroMetrics = [
-  { value: '81K+', label: 'Unique Visitors', sub: 'Techniche production' },
-  { value: '2.3M', label: 'Requests Served', sub: 'Peak festival traffic' },
-  { value: '95%+', label: 'Cached Traffic', sub: 'Nginx + HTTP caching' },
-  { value: '2K+', label: 'PIMS Downloads', sub: 'Active student installs' },
-  { value: '1.5K+', label: 'Android Downloads', sub: 'Play Store installs' },
-  { value: '150+', label: 'Products Managed', sub: 'Lotus Traders catalogue' },
+  { value: '81K+', label: 'Visitors' },
+  { value: '2.3M', label: 'Requests' },
+  { value: '2K+', label: 'Downloads' },
+  { value: '150+', label: 'Products' },
 ];
 
 /* ── Capability pillars ── */
@@ -58,282 +106,115 @@ export default function Home() {
   return (
     <div>
       {/* ══════════════════════════════════════════════════
-          HERO (STATIC + GOJO HOVER)
+          HERO (U-SHAPE LAYOUT, DARK THEME)
       ══════════════════════════════════════════════════ */}
-      <section className="hero-section">
-        <div className="container-site" style={{ position: 'relative', zIndex: 1 }}>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr auto',
-              gap: '4rem',
-              alignItems: 'center',
-              paddingTop: '3.5rem',
-              paddingBottom: '4rem',
-            }}
-            className="hero-grid"
-          >
-            {/* ── Left: Text ── */}
-            <div style={{ maxWidth: '580px' }}>
-              <h1
-                className="heading-premium name-brand"
-                style={{
-                  fontSize: 'clamp(3rem, 5.5vw, 5.5rem)',
-                  color: 'var(--text-primary)',
-                  marginBottom: '0.5rem',
-                }}
-              >
-                Ayush
-                <br />
-                <span className="text-gradient-orange">Shandilya</span>
-              </h1>
-              <div
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-                  fontWeight: 600,
-                  color: 'var(--text-secondary)',
-                  letterSpacing: '-0.01em',
-                  marginBottom: '1.5rem',
-                  lineHeight: 1.3,
-                }}
-              >
-                Software Engineer & Technical Product Builder
+      <section style={{ backgroundColor: 'var(--bg)', minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '68px', overflow: 'hidden' }}>
+        <div className="container-site" style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '0 2rem' }}>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '3rem', alignItems: 'center' }} className="hero-grid">
+            
+            {/* ── Left: Typography ── */}
+            <div style={{ zIndex: 10 }}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', fontWeight: 500 }}>
+                Hey. I'm Ayush,
               </div>
-
-              {/* Supporting statement */}
-              <p
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '1.05rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.7,
-                  maxWidth: '520px',
-                  marginBottom: '1.75rem',
-                }}
-              >
-                I build and deploy production web, mobile, backend, and cloud
-                systems. Every project on this site is real, shipped, and
-                measured.
+              <h1 style={{ color: 'var(--text-primary)', lineHeight: 1.1, marginBottom: '2rem' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.0rem, 4.0vw, 5.0rem)', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.02em' }}>
+                  A SOFTWARE
+                </div>
+                <div style={{ fontFamily: 'serif', fontStyle: 'italic', fontSize: 'clamp(3rem, 5.5vw, 6.5rem)', fontWeight: 400, letterSpacing: '-0.02em', marginLeft: '1rem', marginTop: '-0.5rem', marginBottom: '-0.5rem', color: 'var(--orange-light)' }}>
+                  & Systems
+                </div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.0rem, 4.0vw, 5.0rem)', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.02em' }}>
+                  ENGINEER
+                </div>
+              </h1>
+              
+              <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: '400px', marginBottom: '2.5rem' }}>
+                Building robust products, platforms and infrastructure that handle real traffic, scale effectively, and deliver results.
               </p>
 
-
-              {/* Metrics */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '1.5rem',
-                  paddingTop: '1.75rem',
-                  borderTop: '1px solid var(--border-warm)',
-                }}
+              <Link to="/contact" style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '1rem', 
+                backgroundColor: 'var(--text-primary)', 
+                color: 'var(--bg)', 
+                padding: '0.6rem 0.6rem 0.6rem 1.75rem', 
+                borderRadius: '50px', 
+                textDecoration: 'none',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.85rem',
+                fontWeight: 700,
+                letterSpacing: '0.05em',
+                transition: 'transform 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
               >
-                {heroMetrics.map((m, idx) => (
-                  <div key={idx}>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: '1.65rem',
-                        fontWeight: 800,
-                        color: 'var(--orange-light)',
-                        marginBottom: '0.1rem',
-                      }}
-                    >
-                      {m.value}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-heading)',
-                        fontSize: '0.8rem',
-                        fontWeight: 600,
-                        color: 'var(--text-primary)',
-                      }}
-                    >
-                      {m.label}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: '0.7rem',
-                        color: 'var(--text-muted)',
-                      }}
-                    >
-                      {m.sub}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                CONTACT ME
+                <span style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  width: '38px', 
+                  height: '38px', 
+                  backgroundColor: 'var(--orange)', 
+                  color: 'white', 
+                  borderRadius: '50%' 
+                }}>
+                  <ArrowRight size={18} />
+                </span>
+              </Link>
             </div>
 
-            {/* ── Right: Portrait (Gojo Hover) ── */}
-            <div 
-              className="hero-portrait-wrap hide-mobile"
-              onMouseEnter={() => {
-                setIsHovered(true);
-                if (audioRef.current) {
-                  audioRef.current.currentTime = 0;
-                  audioRef.current.play().catch(e => console.log('Audio play failed:', e));
-                }
-              }}
-              onMouseLeave={() => {
-                setIsHovered(false);
-                if (audioRef.current) {
-                  audioRef.current.pause();
-                  audioRef.current.currentTime = 0;
-                }
-              }}
-              style={{ cursor: 'crosshair' }}
-            >
-              <div
-                style={{
-                  width: '420px',
-                  height: '520px',
-                  borderRadius: '20px',
-                  overflow: 'visible',
-                  border: '1px solid var(--border-warm)',
-                  position: 'relative',
-                  boxShadow: '0 24px 60px rgba(0,0,0,0.6), 0 0 30px rgba(232,98,42,0.08)',
-                }}
-              >
-                {/* Audio and Image for hover effect */}
-                <audio ref={audioRef} src={domainExpansionSound} preload="auto" />
-                
-                <img
-                  src={isHovered ? domainImage : "/image2.png"}
-                  alt="Ayush Shandilya"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center top',
-                    borderRadius: '20px',
-                    transition: 'all 0.3s ease',
-                    filter: isHovered ? 'contrast(1.2) saturate(1.2)' : 'none',
+            {/* ── Center: U-Shape Portrait ── */}
+            <div style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+              <div style={{ 
+                width: '450px', 
+                height: '550px', 
+                backgroundColor: 'var(--bg-card)', 
+                border: '1px solid var(--border-warm)',
+                borderRadius: '0 0 250px 250px', 
+                overflow: 'hidden',
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                boxShadow: '0 24px 60px rgba(0,0,0,0.6)'
+              }}>
+                <img 
+                  src="/hero.png" 
+                  alt="Ayush Shandilya" 
+                  style={{ 
+                    width: '120%', 
+                    height: 'auto', 
+                    objectFit: 'contain',
+                    objectPosition: 'bottom center',
+                    transform: 'translateY(5%)'
+                  }} 
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/image2.png';
                   }}
                 />
-                
-                {/* Overlay caption */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    background: 'linear-gradient(to top, rgba(12,10,8,0.95) 0%, transparent 100%)',
-                    padding: '1.5rem 1.25rem 1.25rem',
-                    borderRadius: '0 0 20px 20px',
-                    transition: 'opacity 0.3s ease',
-                    opacity: isHovered ? 0 : 1, // Hide caption when domain expansion triggers
-                  }}
-                >
-                  <div
-                    className="name-brand"
-                    style={{
-                      fontSize: '1.25rem',
-                      fontWeight: 800,
-                      color: 'var(--text-primary)',
-                    }}
-                  >
-                    Ayush Shandilya
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.72rem',
-                      color: 'var(--orange-light)',
-                      marginTop: '0.2rem',
-                    }}
-                  >
-                    B.Tech · IIT Guwahati
-                  </div>
-                </div>
-
-                {/* Domain Expansion Text Overlay */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    justifyContent: 'center',
-                    paddingBottom: '2.5rem',
-                    borderRadius: '20px',
-                    background: 'rgba(0,0,0,0.4)',
-                    opacity: isHovered ? 1 : 0,
-                    transition: 'opacity 0.3s ease',
-                    pointerEvents: 'none',
-                  }}
-                >
-                  <div 
-                    style={{
-                      fontFamily: "'Jujutsu Kaisen', sans-serif",
-                      fontSize: '2rem',
-                      fontWeight: 900,
-                      color: 'white',
-                      letterSpacing: '0.2em',
-                      textTransform: 'uppercase',
-                      textShadow: '0 0 20px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.6)',
-                      transform: isHovered ? 'scale(1)' : 'scale(0.8)',
-                      transition: 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                      textAlign: 'center',
-                    }}
-                  >
-                    DOMAIN EXPANSION
-                  </div>
-                </div>
-
-                {/* Expanding Links on Hover */}
-                {/* Resume Link (Top Center) */}
-                <div style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: isHovered ? 'translate(-50%, -300px)' : 'translate(-50%, -50%)',
-                  opacity: isHovered ? 1 : 0,
-                  transition: 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s',
-                  pointerEvents: isHovered ? 'auto' : 'none',
-                  zIndex: 10,
-                }}>
-                  <a href="#" className="domain-link" target="_blank" rel="noreferrer">
-                    <FileText size={22} />
-                    <span className="domain-link-text">Resume</span>
-                  </a>
-                </div>
-
-                {/* GitHub Link (Left Edge) */}
-                <div style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: isHovered ? 'translate(-260px, -50px)' : 'translate(-50%, -50%)',
-                  opacity: isHovered ? 1 : 0,
-                  transition: 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s',
-                  pointerEvents: isHovered ? 'auto' : 'none',
-                  zIndex: 10,
-                }}>
-                  <a href="https://github.com/ash469" className="domain-link" target="_blank" rel="noreferrer">
-                    <Github size={22} />
-                    <span className="domain-link-text">GitHub</span>
-                  </a>
-                </div>
-
-                {/* LinkedIn Link (Right Edge) */}
-                <div style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: isHovered ? 'translate(204px, -50px)' : 'translate(-50%, -50%)',
-                  opacity: isHovered ? 1 : 0,
-                  transition: 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s',
-                  pointerEvents: isHovered ? 'auto' : 'none',
-                  zIndex: 10,
-                }}>
-                  <a href="https://linkedin.com/in/ayush-shandilya" className="domain-link" target="_blank" rel="noreferrer">
-                    <Linkedin size={22} />
-                    <span className="domain-link-text">LinkedIn</span>
-                  </a>
-                </div>
               </div>
             </div>
+
+            {/* ── Right: Stats ── */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', textAlign: 'center', zIndex: 10 }}>
+              {heroMetrics.map((m, idx) => (
+                <div key={idx}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 900, color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
+                    {m.value}
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                    {m.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
@@ -345,14 +226,11 @@ export default function Home() {
         <div className="container-site">
           {/* Section head */}
           <div style={{ marginBottom: '3rem' }}>
-            <div className="section-eyebrow">Selected Work</div>
+            <div className="section-eyebrow">Selected Projects</div>
             <h2 className="section-title">
               Shipped Systems,{' '}
               <span className="text-gradient-orange">Real Evidence</span>
             </h2>
-            <p className="section-subtitle">
-              Three flagship projects — each built, deployed, and operating in production.
-            </p>
           </div>
 
           {/* Featured grid */}
@@ -364,22 +242,22 @@ export default function Home() {
               marginBottom: '2rem',
             }}
           >
-            {featuredProjects.map((project) => (
+            {projects.filter(p => ['techniche', 'pims', 'lotus-traders', 'nss'].includes(p.id)).map((project) => (
               <ProjectCard key={project.id} project={project} variant="featured" />
             ))}
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem' }}>
-            <Link to="/work" className="btn btn-secondary">
+            <Link to="/projects" className="btn btn-secondary">
               View All Projects
-              <ArrowUpRight size={16} />
+              <ArrowRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════
-          MORE WORK
+          EXPERIENCE PREVIEW
       ══════════════════════════════════════════════════ */}
       <section
         className="page-section"
@@ -387,101 +265,54 @@ export default function Home() {
       >
         <div className="container-site">
           <div style={{ marginBottom: '2.5rem' }}>
-            <div className="section-eyebrow">More Work</div>
-            <h2 className="section-title">Additional Projects</h2>
+            <div className="section-eyebrow">Career & Leadership</div>
+            <h2 className="section-title">Experience Preview</h2>
           </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-              gap: '1.25rem',
-            }}
-          >
-            {additionalProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} variant="small" />
-            ))}
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+            A mix of professional client work and technical leadership roles at IIT Guwahati.
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <Link to="/experience" className="btn btn-secondary">
+              View Experience Details <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════
-          CAPABILITY PILLARS
+          SKILLS PREVIEW
       ══════════════════════════════════════════════════ */}
       <section className="page-section" style={{ borderTop: '1px solid var(--border)' }}>
         <div className="container-site">
           <div style={{ marginBottom: '2.5rem' }}>
-            <div className="section-eyebrow">Engineering Scope</div>
-            <h2 className="section-title">What I Build</h2>
+            <div className="section-eyebrow">Capabilities</div>
+            <h2 className="section-title">Skills Overview</h2>
           </div>
+          <p style={{ color: 'var(--text-secondary)' }}>
+            <strong>Languages:</strong> C++ · Python · JavaScript · TypeScript · Dart · SQL<br/>
+            <strong>Frontend:</strong> React · Next.js · Tailwind CSS<br/>
+            <strong>Backend:</strong> Node.js · Express · REST APIs<br/>
+            <strong>Cloud & Infra:</strong> AWS · Docker · Nginx · CI/CD
+          </p>
+        </div>
+      </section>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '1.25rem',
-            }}
-          >
-            {pillars.map(({ icon, title, desc }) => (
-              <div
-                key={title}
-                style={{
-                  background: 'var(--bg-card)',
-                  border: '1px solid var(--border)',
-                  borderRadius: '12px',
-                  padding: '1.5rem',
-                  transition: 'border-color 0.2s, transform 0.2s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-orange)';
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                <div
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '10px',
-                    background: 'rgba(232,98,42,0.1)',
-                    border: '1px solid rgba(232,98,42,0.2)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--orange)',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  {icon}
-                </div>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '1rem',
-                    fontWeight: 700,
-                    color: 'var(--text-primary)',
-                    marginBottom: '0.5rem',
-                    letterSpacing: '-0.01em',
-                  }}
-                >
-                  {title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.875rem',
-                    color: 'var(--text-secondary)',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {desc}
-                </p>
-              </div>
-            ))}
+      {/* ══════════════════════════════════════════════════
+          CURRENTLY
+      ══════════════════════════════════════════════════ */}
+      <section className="page-section" style={{ borderTop: '1px solid var(--border)', background: 'var(--bg-surface)' }}>
+        <div className="container-site">
+          <div style={{ marginBottom: '2.5rem' }}>
+            <div className="section-eyebrow">Now</div>
+            <h2 className="section-title">Currently</h2>
           </div>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', marginBottom: '1.5rem', lineHeight: '1.7' }}>
+            Preparing for software engineering placements at IIT Guwahati, while building deeper expertise in machine learning and data systems.
+          </p>
+          <ul style={{ color: 'var(--text-secondary)', listStyleType: 'disc', paddingLeft: '1.5rem', lineHeight: '2' }}>
+            <li><strong>Currently building:</strong> Groundwater Prediction System</li>
+            <li><strong>Currently learning:</strong> ML / System Design / Kubernetes</li>
+          </ul>
         </div>
       </section>
 
@@ -492,7 +323,7 @@ export default function Home() {
         style={{
           borderTop: '1px solid var(--border)',
           padding: '5rem 0',
-          background: 'var(--bg-surface)',
+          background: 'var(--bg)',
           textAlign: 'center',
         }}
       >
@@ -521,29 +352,16 @@ export default function Home() {
               lineHeight: 1.1,
             }}
           >
-            Let's build something together
+            Let's build something.
           </h2>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '1rem',
-              color: 'var(--text-secondary)',
-              marginBottom: '2.5rem',
-              maxWidth: '440px',
-              margin: '0 auto 2.5rem',
-            }}
-          >
-            Actively seeking SDE, data engineering, and product-oriented roles
-            for 2025 placement.
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contact" className="btn btn-primary">
-              Get In Touch
-              <ArrowRight size={16} />
-            </Link>
-            <Link to="/work" className="btn btn-secondary">
-              Browse Work
-            </Link>
+          <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2.5rem' }}>
+            <Link to="/contact" className="nav-link" style={{ fontWeight: 600 }}>Email</Link>
+            <span style={{ color: 'var(--border-warm)' }}>·</span>
+            <a href="https://linkedin.com/in/ayush-shandilya" className="nav-link" target="_blank" rel="noreferrer" style={{ fontWeight: 600 }}>LinkedIn</a>
+            <span style={{ color: 'var(--border-warm)' }}>·</span>
+            <a href="https://github.com/ash469" className="nav-link" target="_blank" rel="noreferrer" style={{ fontWeight: 600 }}>GitHub</a>
+            <span style={{ color: 'var(--border-warm)' }}>·</span>
+            <a href="#" className="nav-link" target="_blank" rel="noreferrer" style={{ fontWeight: 600 }}>Resume</a>
           </div>
         </div>
       </section>

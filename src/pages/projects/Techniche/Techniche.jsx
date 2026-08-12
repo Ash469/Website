@@ -1,9 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, AlertCircle } from 'lucide-react';
-import { getProject } from '../../data/projects';
-
-const project = getProject('techniche');
+const project = {
+  role: [
+    'Provisioned and maintained AWS EC2 infrastructure',
+    'Configured Nginx reverse proxy with SSL termination and caching',
+    'Built automated CI/CD deployment pipeline with GitHub Actions',
+    'Built and published official Techniche Android app on Google Play',
+    'Developed Campus Ambassador (CA) portal & Comedy Night registration',
+    'Designed volunteer QR check-in & verification system',
+    'Managed database operations and role-based admin controls'
+  ],
+  links: {
+    live: 'https://techniche.org',
+    github: 'https://github.com/Ash469'
+  },
+  engineeringDecisions: [
+    {
+      decision: 'Nginx caching layer over direct Node.js serving',
+      reason: 'Absorbed 95.43% of incoming traffic during peak festival hours, preventing database/backend overload.'
+    },
+    {
+      decision: 'Automated GitHub Actions deployment to EC2',
+      reason: 'Reduced release time to under 30 seconds for critical hotfixes during live events.'
+    },
+    {
+      decision: 'QR code verification for volunteer check-ins',
+      reason: 'Prevented spoofing and enabled real-time attendance logging across multiple venues.'
+    }
+  ],
+  challenges: [
+    'Handling sudden traffic spikes of tens of thousands of concurrent users during popular event releases.',
+    'Coordinating zero-downtime updates on live production services while users were actively registering.',
+    'Ensuring strict role-based authorization across multiple independent admin sub-systems.'
+  ]
+};
 
 const techStack = [
   { category: 'Infrastructure', items: ['AWS EC2', 'Nginx', 'Docker', 'Let\'s Encrypt SSL', 'Cloudflare DNS'] },
@@ -24,7 +55,7 @@ export default function Techniche() {
       <div className="case-study-hero">
         <div className="container-site">
           <Link
-            to="/work"
+            to="/projects"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -40,7 +71,7 @@ export default function Techniche() {
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
           >
             <ArrowLeft size={14} />
-            Back to Work
+            Back to Projects
           </Link>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
@@ -113,7 +144,7 @@ export default function Techniche() {
         ══════════════════════════════════════ */}
         <div className="case-study-section">
           <div className="cs-section-label">Overview</div>
-          <h2 className="cs-heading">What is Techniche?</h2>
+          <h2 className="cs-heading">What I Built</h2>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }} className="two-col-grid">
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.75 }}>
               Techniche is IIT Guwahati's annual technical festival — one of the largest in Asia. Managing the technology for a festival at this scale means handling tens of thousands of concurrent visitors, coordinating real-time logistics for hundreds of volunteers, managing registrations across dozens of events, and keeping multiple production systems running reliably during a high-stakes 4-day window.
@@ -129,7 +160,10 @@ export default function Techniche() {
         ══════════════════════════════════════ */}
         <div className="case-study-section">
           <div className="cs-section-label">My Role</div>
-          <h2 className="cs-heading">Responsibilities</h2>
+          <h2 className="cs-heading">Role & Duration</h2>
+          <div style={{ marginBottom: '1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.9rem', color: 'var(--orange)' }}>
+            Nov 2024 – Present
+          </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="two-col-grid">
             {project.role.map((r, i) => (
               <div
@@ -253,6 +287,37 @@ export default function Techniche() {
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
               The automated CI/CD pipeline reduced deployment time from ~10 minutes of manual SSH work to under 30 seconds — critical when pushing hotfixes during the live festival window.
             </p>
+          </div>
+        </div>
+
+        {/* ══════════════════════════════════════
+            LINKS & SCREENSHOTS
+        ══════════════════════════════════════ */}
+        <div className="case-study-section">
+          <div className="cs-section-label">Visuals & Links</div>
+          <h2 className="cs-heading">Screenshots & Links</h2>
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+            <a href={project.links.live} className="btn btn-primary" target="_blank" rel="noreferrer">
+              Live Project <ArrowUpRight size={16} />
+            </a>
+            <a href={project.links.github} className="btn btn-secondary" target="_blank" rel="noreferrer">
+              GitHub <ArrowUpRight size={16} />
+            </a>
+          </div>
+          <div style={{
+            width: '100%',
+            height: '400px',
+            background: 'var(--bg-card)',
+            border: '1px dashed var(--border)',
+            borderRadius: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--text-muted)',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.85rem'
+          }}>
+            [ Screenshots Placeholder ]
           </div>
         </div>
 

@@ -6,7 +6,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   const links = [
-    { label: 'Work', to: '/work' },
+    { label: 'Projects', to: '/projects' },
     { label: 'ML / Data', to: '/ml' },
     { label: 'About', to: '/about' },
     { label: 'Contact', to: '/contact' },

@@ -17,10 +17,10 @@ export default function SchoolMgmt() {
     <div style={{ paddingTop: '68px' }}>
       <div className="case-study-hero">
         <div className="container-site">
-          <Link to="/work" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'none', marginBottom: '2.5rem', transition: 'color 0.2s' }}
+          <Link to="/projects" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'none', marginBottom: '2.5rem', transition: 'color 0.2s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}>
-            <ArrowLeft size={14} /> Back to Work
+            <ArrowLeft size={14} /> Back to Projects
           </Link>
           <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.25rem' }}>
             <span className="badge-orange">Mobile · Flutter</span>

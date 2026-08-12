@@ -7,8 +7,8 @@ import { ArrowUpRight, ExternalLink } from 'lucide-react';
  * variant: 'featured' | 'small'
  */
 export default function ProjectCard({ project, variant = 'featured' }) {
-  const { slug, name, tagline, category, tech, metrics, shortDesc, status } = project;
-  const caseStudyPath = `/work/${slug}`;
+  const { slug, id, name, tagline, category, tech = [], metrics = [], shortDesc, status } = project;
+  const caseStudyPath = `/projects/${slug || id}`;
 
   if (variant === 'small') {
     return (
