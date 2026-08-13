@@ -9,11 +9,19 @@ import { HexagonBackground } from '../components/HexagonBackground';
 import HeroOriginal from '../components/HeroOriginal';
 import HeroEditorial from '../components/HeroEditorial';
 
+/* ── Logo Imports for Production Bundling ── */
+import lotusLogo from './experience/LotusTraders/lotusTraders.png';
+import pimsLogo from './experience/PIMS/logo.png';
+import appMgmtLogo from './experience/AppMgmt/logo.jpg';
+
 export default function Home() {
   return (
     <div className="bg-[#0C0A08] relative">
       <HeroEditorial /> 
 
+      {/* ══════════════════════════════════════════════════
+          FEATURED WORK
+      ══════════════════════════════════════════════════ */}
       <section className="py-12 md:py-16">
         <div className="container-site">
           <div className="mb-8">
@@ -57,7 +65,7 @@ export default function Home() {
                 period: 'Client Deployment',
                 description: 'Engineered a B2B construction machinery catalogue & enquiry management platform from scratch for an active commercial client.',
                 path: '/experience/lotus-traders',
-                logo: '/src/pages/experience/LotusTraders/lotusTraders.png'
+                logo: lotusLogo
               },
               {
                 company: 'PIMS / Ease Exit',
@@ -65,7 +73,7 @@ export default function Home() {
                 period: 'Production Deployment',
                 description: 'Designed and deployed a multi-stage hostel leave management and QR gate-verification mobile app used by over 2,000 students.',
                 path: '/experience/pims',
-                logo: '/src/pages/experience/PIMS/logo.png'
+                logo: pimsLogo
               },
               {
                 company: 'Application Management System',
@@ -73,7 +81,7 @@ export default function Home() {
                 period: 'Production Deployment',
                 description: 'Built a multi-role Flutter & Firebase mobile system for end-to-end application submission, admin review, and real-time status tracking.',
                 path: '/experience/application-management',
-                logo: '/src/pages/experience/AppMgmt/logo.jpg'
+                logo: appMgmtLogo
               }
             ].map((exp, idx) => (
               <div
