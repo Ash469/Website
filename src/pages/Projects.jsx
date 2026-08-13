@@ -1,191 +1,193 @@
+import React, { useState, useEffect, useRef } from 'react';
 import ProjectCard from '../components/ProjectCard';
+import { projects } from '../data/projectsData';
 
-const projects = [
-  {
-    id: 'techniche',
-    slug: 'techniche',
-    name: 'Techniche',
-    tagline: 'Full-Stack · DevOps · Android',
-    category: 'Web & Platforms',
-    status: 'live',
-    shortDesc: 'Production event technology ecosystem for IIT Guwahati\'s annual technical festival.',
-    metrics: [{ value: '81K+', label: 'Visitors' }, { value: '2.3M', label: 'Requests' }],
-    tech: ['AWS EC2', 'Nginx', 'Docker', 'React', 'Node.js', 'Flutter'],
-    featured: true
-  },
-  {
-    id: 'pims',
-    slug: 'pims',
-    name: 'PIMS / Ease Exit',
-    tagline: 'Mobile · Backend · Firebase',
-    category: 'Mobile',
-    status: 'live',
-    shortDesc: 'Smart leave management and student verification system with multi-stage approval workflow.',
-    metrics: [{ value: '2K+', label: 'Downloads' }],
-    tech: ['Flutter', 'Node.js', 'MongoDB', 'Firebase'],
-    featured: true
-  },
-  {
-    id: 'lotus-traders',
-    slug: 'lotus-traders',
-    name: 'Lotus Traders Machinery',
-    tagline: 'Full-Stack · Next.js',
-    category: 'Web & Platforms',
-    status: 'live',
-    shortDesc: 'Construction machinery catalogue and B2B enquiry routing platform for a real client.',
-    metrics: [{ value: '150+', label: 'Products' }],
-    tech: ['Next.js', 'React', 'TypeScript', 'MongoDB'],
-    featured: true
-  },
-  {
-    id: 'nss',
-    slug: 'nss',
-    name: 'NSS IIT Guwahati',
-    tagline: 'Full-Stack · Google Sheets API',
-    category: 'Web & Platforms',
-    status: 'live',
-    shortDesc: 'Official NSS website with a self-service work-hours lookup system for students.',
-    metrics: [{ value: 'Real-time', label: 'Lookup' }],
-    tech: ['React', 'Node.js', 'Google Sheets API'],
-    featured: true
-  },
-  {
-    id: 'school-management',
-    slug: 'school-management',
-    name: 'School Management App',
-    tagline: 'Mobile · Flutter',
-    category: 'Mobile',
-    status: 'completed',
-    shortDesc: 'Flutter Multi-Role School Management System — 4 user roles, 7 modules.',
-    metrics: [{ value: '4 Roles', label: 'Modules' }],
-    tech: ['Flutter', 'Dart', 'Firebase Auth', 'Firestore'],
-    featured: false
-  },
-  {
-    id: 'application-management',
-    slug: 'application-management',
-    name: 'Application Management System',
-    tagline: 'Mobile · Flutter · Firebase',
-    category: 'Mobile',
-    status: 'completed',
-    shortDesc: 'Flutter / Firebase Application Workflow System — registration through approval.',
-    metrics: [{ value: 'Real-time', label: 'Tracking' }],
-    tech: ['Flutter', 'Dart', 'Firebase Auth', 'Firestore', 'FCM'],
-    featured: false
-  },
-  {
-    id: 'udgam',
-    slug: 'udgam',
-    name: 'Udgam 2025',
-    tagline: 'Frontend · Event Platform',
-    category: 'Web & Platforms',
-    status: 'live',
-    shortDesc: 'Official website for IIT Guwahati\'s Entrepreneurship Summit with GSAP animations.',
-    metrics: [{ value: 'Summit', label: 'Platform' }],
-    tech: ['React', 'Vite', 'Tailwind CSS', 'GSAP', 'Framer Motion'],
-    featured: false
-  }
-];
+const FILTERS = ['All', 'Web', 'Mobile', 'Backend', 'ML / Data', 'DevOps'];
 
-export default function Projects() {
-  const webProjects = projects.filter(p => ['techniche', 'lotus-traders', 'nss', 'udgam'].includes(p.id));
-  const mobileProjects = projects.filter(p => ['pims', 'school-management', 'application-management'].includes(p.id));
-  
-  // Dummy Data for ML (since it's currently building/missing in projects.js)
-  const mlProjects = [
-    {
-      id: 'smart-return',
-      slug: 'smart-return',
-      name: 'Smart Return Predictor',
-      tagline: 'Data & ML Pipeline',
-      category: 'Data & ML',
-      status: 'completed',
-      shortDesc: 'Predictive modeling for intelligent return predictions.',
-      metrics: [],
-      featured: false
-    },
-    {
-      id: 'groundwater',
-      slug: 'groundwater',
-      name: 'Groundwater Prediction',
-      tagline: 'ML / Data Systems',
-      category: 'Data & ML',
-      status: 'building',
-      shortDesc: 'Currently building: A machine learning approach to predict groundwater levels.',
-      metrics: [],
-      featured: false
+// Self-contained scroll-reveal wrapper component
+function RevealItem({ children, delay = 0 }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const domRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(domRef.current);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const currentRef = domRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
-  ];
 
-  const renderGrid = (items) => (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-        gap: '1.75rem',
-      }}
-    >
-      {items.map(project => (
-        <ProjectCard key={project.id} project={project} variant="featured" />
-      ))}
-    </div>
-  );
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
 
   return (
-    <div style={{ paddingTop: '68px' }}>
-      <div style={{ borderBottom: '1px solid var(--border)', padding: '4rem 0 3.5rem' }}>
+    <div
+      ref={domRef}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        willChange: 'opacity, transform'
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export default function Projects() {
+  const [activeTab, setActiveTab] = useState('All');
+
+  // Filter projects by category
+  const filteredProjects = activeTab === 'All'
+    ? projects
+    : projects.filter(p => p.categories.includes(activeTab));
+
+  return (
+    <div style={{ paddingTop: '68px', minHeight: '100vh', backgroundColor: 'var(--bg)' }}>
+      {/* Page Header (Super Compact Spacing) */}
+      <div style={{ borderBottom: '1px solid var(--border)', padding: '2.5rem 0 1.75rem' }}>
         <div className="container-site">
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(2.2rem, 4vw, 3.6rem)',
-              fontWeight: 900,
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.03em',
-              lineHeight: 1.05,
-              marginBottom: '1rem',
-            }}
-          >
-            All Projects
-          </h1>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '1.05rem',
-              color: 'var(--text-secondary)',
-              maxWidth: '520px',
-              lineHeight: 1.65,
-            }}
-          >
-            Categorised by platform and domain.
-          </p>
+          <div className="section-eyebrow" style={{ marginBottom: '0.5rem' }}>Inventory</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1.5rem' }}>
+            <div>
+              <h1
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontWeight: 900,
+                  color: 'var(--text-primary)',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1.05,
+                  marginBottom: '0.5rem',
+                }}
+              >
+                Engineering <span className="text-gradient-orange">Showcase</span>
+              </h1>
+              <p
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.95rem',
+                  color: 'var(--text-secondary)',
+                  maxWidth: '560px',
+                  lineHeight: 1.5,
+                }}
+              >
+                A compact catalogue of production platforms, distributed systems, mobile products, and machine learning models.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <section className="page-section">
+      {/* Main content with filters and grid */}
+      <section className="page-section" style={{ padding: '2rem 0 4rem' }}>
         <div className="container-site">
-          <div style={{ marginBottom: '2.5rem' }}>
-            <h2 className="section-title">Web & Platforms</h2>
+          {/* Filters Row */}
+          <div 
+            style={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              gap: '0.5rem', 
+              marginBottom: '2.5rem', 
+              borderBottom: '1px solid var(--border)', 
+              paddingBottom: '1rem' 
+            }}
+          >
+            {FILTERS.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`tab-pill-button ${activeTab === tab ? 'active' : ''}`}
+                style={{
+                  padding: '0.4rem 1.1rem',
+                  fontSize: '0.78rem',
+                  fontWeight: 600,
+                  fontFamily: 'var(--font-mono)',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                  border: '1px solid',
+                  borderColor: activeTab === tab ? 'var(--orange)' : 'var(--border)',
+                  backgroundColor: activeTab === tab ? 'var(--orange-dim)' : 'transparent',
+                  color: activeTab === tab ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  borderRadius: '30px',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+                onMouseEnter={(e) => {
+                  if (activeTab !== tab) {
+                    e.currentTarget.style.borderColor = 'var(--text-muted)';
+                    e.currentTarget.style.color = 'var(--text-primary)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeTab !== tab) {
+                    e.currentTarget.style.borderColor = 'var(--border)';
+                    e.currentTarget.style.color = 'var(--text-secondary)';
+                  }
+                }}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
-          {renderGrid(webProjects)}
-        </div>
-      </section>
 
-      <section className="page-section" style={{ borderTop: '1px solid var(--border)', background: 'var(--bg-surface)' }}>
-        <div className="container-site">
-          <div style={{ marginBottom: '2.5rem' }}>
-            <h2 className="section-title">Mobile</h2>
+          {/* Grid Layout */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+              gap: '1.75rem',
+            }}
+          >
+            {filteredProjects.map((project, index) => {
+              const displayIndex = String(index + 1).padStart(2, '0');
+              // stagger delay based on row position for initial render
+              const delay = (index % 3) * 100;
+              
+              return (
+                <RevealItem key={project.id} delay={delay}>
+                  <div style={{ position: 'relative' }} className="project-card-wrapper">
+                    {/* Top index number */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '1.25rem',
+                        right: '2rem',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.9rem',
+                        fontWeight: 700,
+                        color: 'rgba(232, 98, 42, 0.25)',
+                        zIndex: 2,
+                        pointerEvents: 'none'
+                      }}
+                    >
+                      #{displayIndex}
+                    </div>
+                    <ProjectCard project={project} variant="featured" />
+                  </div>
+                </RevealItem>
+              );
+            })}
           </div>
-          {renderGrid(mobileProjects)}
-        </div>
-      </section>
 
-      <section className="page-section" style={{ borderTop: '1px solid var(--border)' }}>
-        <div className="container-site">
-          <div style={{ marginBottom: '2.5rem' }}>
-            <h2 className="section-title">Data & ML</h2>
-          </div>
-          {renderGrid(mlProjects)}
+          {/* Empty State */}
+          {filteredProjects.length === 0 && (
+            <div style={{ padding: '4rem 0', textAlign: 'center', color: 'var(--text-secondary)' }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>// No projects found in this category.</p>
+            </div>
+          )}
         </div>
       </section>
     </div>

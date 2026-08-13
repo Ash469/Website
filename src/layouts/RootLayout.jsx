@@ -14,7 +14,7 @@ export default function RootLayout() {
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Navbar />
-      <main className="page-enter">
+      <main className="page-enter pb-40">
         <Outlet />
       </main>
       <Footer />

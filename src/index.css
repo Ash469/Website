@@ -2,23 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================================
-   DESIGN SYSTEM — Ayush Shandilya Portfolio
-   Color Direction: Warm Dark + Burnt Orange + Gold Premium
-   Font Stack: Syne (display) / Space Grotesk (heading) / 
-               DM Sans (body) / JetBrains Mono (mono)
-============================================================ */
 
 :root {
   /* Background Layer */
-  --bg:          #0C0A08;
-  --bg-surface:  #141210;
+  --bg: #0C0A08;
+  --bg-surface: #141210;
   --bg-elevated: #1E1A16;
-  --bg-card:     #181410;
+  --bg-card: #181410;
 
   /* Borders */
-  --border:        #2A2420;
-  /* Spacing scale */
+  --border: #2A2420;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -27,22 +20,22 @@
   --space-6: 32px;
   --space-7: 48px;
   --space-8: 64px;
-  --border-warm:   #3A3028;
+  --border-warm: #3A3028;
   --border-orange: rgba(232, 98, 42, 0.28);
 
   /* Orange accent */
-  --orange:       #E8622A;
+  --orange: #E8622A;
   --orange-light: #F28C54;
-  --orange-dim:   rgba(232, 98, 42, 0.12);
+  --orange-dim: rgba(232, 98, 42, 0.12);
 
   /* Gold accent */
-  --gold:         #D4A853;
-  --gold-light:   #E8C878;
+  --gold: #D4A853;
+  --gold-light: #E8C878;
 
   /* Text */
-  --text-primary:   #F5F0E8;
+  --text-primary: #F5F0E8;
   --text-secondary: #9A8878;
-  --text-muted:     #6B5A4E;
+  --text-muted: #6B5A4E;
 
   /* Status */
   --success: #4ADE80;
@@ -50,15 +43,15 @@
   /* Fonts: Exo 2 (display+heading) • Nunito Sans (body) • Roboto Mono (mono) */
   --font-display: 'Exo 2', sans-serif;
   --font-heading: 'Exo 2', sans-serif;
-  
+
   /* --font-display: 'Jujutsu Kaisen', sans-serif; */
   /* --font-heading: 'Jujutsu Kaisen', sans-serif; */
 
   /* --font-display: 'Death Note', sans-serif; */
   /* --font-heading: 'Death Note', sans-serif; */
-  
-  --font-body:    'Nunito Sans', sans-serif;
-  --font-mono:    'Roboto Mono', monospace;
+
+  --font-body: 'Nunito Sans', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
 }
 
 @font-face {
@@ -75,10 +68,10 @@
   font-style: normal;
 }
 
-/* ============================================================
-   RESET & BASE
-============================================================ */
-*, *::before, *::after {
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -106,15 +99,20 @@ body {
   color: var(--text-primary);
 }
 
-/* ============================================================
-   CUSTOM SCROLLBAR
-============================================================ */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
 ::-webkit-scrollbar-thumb {
   background: #3A3028;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--orange);
 }
@@ -122,10 +120,21 @@ body {
 /* ============================================================
    TYPOGRAPHY UTILITIES
 ============================================================ */
-.font-display  { font-family: var(--font-display); }
-.font-heading  { font-family: var(--font-heading); }
-.font-body     { font-family: var(--font-body); }
-.font-mono     { font-family: var(--font-mono); }
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
 
 /* ── h1: Maximum impact — Exo 2 900, very tight tracking ── */
 h1 {
@@ -174,27 +183,11 @@ a {
   text-decoration: none;
 }
 
-/* ============================================================
-   LAYOUT PRIMITIVES
-============================================================ */
+
 .container-site {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  @apply w-full max-w-7xl mx-auto px-6 md:px-8;
 }
 
-@media (max-width: 768px) {
-  .container-site { padding: 0 1.25rem; }
-}
-
-.page-section {
-  padding: 6rem 0;
-}
-
-@media (max-width: 768px) {
-  .page-section { padding: 4rem 0; }
-}
 
 /* ============================================================
    SECTION LABEL SYSTEM
@@ -235,7 +228,6 @@ a {
   font-weight: 900;
   letter-spacing: 0.08em;
   line-height: 1.2;
-  /* Glow effect */
   filter: drop-shadow(0 0 40px rgba(232, 98, 42, 0.12));
 }
 
@@ -522,18 +514,16 @@ a {
 }
 
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hamburger-btn { display: flex; }
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
 }
 
-/* ============================================================
-   FOOTER
-============================================================ */
-.app-footer {
-  background: var(--bg-surface);
-  border-top: 1px solid var(--border);
-  padding: 3rem 0;
-}
+
 
 /* ============================================================
    HERO
@@ -612,119 +602,6 @@ a {
 }
 
 /* ============================================================
-   CASE STUDY PAGE
-============================================================ */
-.case-study-hero {
-  padding-top: 68px;
-  padding-bottom: 5rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.case-study-section {
-  padding: 4rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.case-study-section:last-child {
-  border-bottom: none;
-}
-
-.cs-section-label {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.cs-section-label::before {
-  content: '';
-  display: block;
-  width: 16px;
-  height: 1px;
-  background: var(--orange);
-}
-
-.cs-heading {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
-  font-weight: 900;
-  color: var(--text-primary);
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  margin-bottom: 1.25rem;
-}
-
-/* ============================================================
-   WORKFLOW STEPS
-============================================================ */
-.workflow-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.workflow-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
-  padding: 1.25rem 0;
-  position: relative;
-}
-
-.workflow-step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  left: 17px;
-  top: calc(1.25rem + 34px);
-  width: 1px;
-  height: calc(100% - 34px + 1.25rem);
-  background: linear-gradient(to bottom, var(--border-orange), transparent);
-}
-
-.workflow-step-num {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-orange);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--orange);
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-.workflow-step-content {
-  flex: 1;
-  padding-top: 0.1rem;
-}
-
-.workflow-step-title {
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.3rem;
-}
-
-.workflow-step-desc {
-  font-family: var(--font-body);
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-/* ============================================================
    STATUS BADGES
 ============================================================ */
 .badge-live {
@@ -752,8 +629,15 @@ a {
 }
 
 @keyframes pulseDot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
-  50% { box-shadow: 0 0 0 5px rgba(74, 222, 128, 0); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 5px rgba(74, 222, 128, 0);
+  }
 }
 
 .badge-building {
@@ -875,13 +759,27 @@ a {
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scrollBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(8px); }
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
 }
 
 /* ============================================================
@@ -889,13 +787,11 @@ a {
 ============================================================ */
 .text-gradient-orange {
   /* Wide sweep: light orange → deep orange → gold — more dramatic than a simple 2-stop */
-  background: linear-gradient(
-    110deg,
-    #F28C54 0%,
-    #E8622A 35%,
-    #D4A853 65%,
-    #E8C878 100%
-  );
+  background: linear-gradient(110deg,
+      #F28C54 0%,
+      #E8622A 35%,
+      #D4A853 65%,
+      #E8C878 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -925,27 +821,37 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 8px,
-    rgba(212, 168, 83, 0.03) 8px,
-    rgba(212, 168, 83, 0.03) 16px
-  );
+  background: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 8px,
+      rgba(212, 168, 83, 0.03) 8px,
+      rgba(212, 168, 83, 0.03) 16px);
   pointer-events: none;
 }
 
 /* ============================================================
    RESPONSIVE UTILITIES
 ============================================================ */
-.show-mobile { display: none !important; }
+.show-mobile {
+  display: none !important;
+}
 
 @media (max-width: 1024px) {
-  .hide-tablet { display: none !important; }
+  .hide-tablet {
+    display: none !important;
+  }
 }
 
 @media (max-width: 768px) {
-  .hide-mobile { display: none !important; }
-  .show-mobile { display: inline-block !important; }
-  h1 { font-size: clamp(2rem, 8vw, 3rem); }
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .show-mobile {
+    display: inline-block !important;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
 }

@@ -1,45 +1,52 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, Shield, Settings, Server, Database, Globe, Layers } from 'lucide-react';
-import lotusSvg from './lotus.svg?raw';
+import { ArrowLeft, CheckCircle2, Shield, Settings, Server, Database, Globe, BarChart2, Layers } from 'lucide-react';
+import smartReturnSvg from './smartReturn.svg?raw';
 
 const project = {
-  roles: [
-    { title: 'Product & Requirement Scoping', desc: 'Translated the client\'s physical print catalogues and B2B requirements into a digital system centered on product specifications and enquiry workflows.' },
-    { title: 'Full-Stack Development', desc: 'Built the Next.js frontend catalog pages, product routing tables, MongoDB database connection pools, and NextAuth admin API endpoints.' },
-    { title: 'Database & Seeding Operations', desc: 'Designed the MongoDB document reference schemas and seeded over 150+ heavy machinery product records across 8 distinct business categories.' }
+  pipeline: [
+    { title: 'Data Cleaning', desc: 'Identified and handled missing value properties, removed outlier transaction logs, and normalized currency metrics.' },
+    { title: 'Feature Engineering', desc: 'Constructed rolling customer purchase profiles, categorised items by returning frequency, and mapped time-based purchase intervals.' },
+    { title: 'Stratified Split', desc: 'Applied StratifiedShuffleSplit (80/20 ratio) to maintain consistent return-to-sale proportions between train and test splits.' },
+    { title: 'Model Exploration', desc: 'Benchmarked multiple pipelines from simple Logistic Regression baselines to tree-based ensemble models.' },
+    { title: 'Evaluation & Interpretability', desc: 'Analyzed ROC-AUC curves, confusion matrices, and feature importances to verify the selected model decisions.' }
   ],
   decisions: [
     {
-      decision: 'Document Reference Graph in MongoDB',
-      reason: 'Modeled relationships between heavy machinery equipment as a flexible document-reference array. This allowed related products to dynamically link without strict relational constraint overhead, powering automated recommendations on product views.'
+      decision: 'StratifiedShuffleSplit Validation Strategy',
+      reason: 'Since returns represent an imbalanced class distribution, a random split could cause class distributions to drift between train and test datasets. Stratified splitting preserves class ratios exactly across splits.'
     },
     {
-      decision: 'Next.js Incremental Static Regeneration (ISR)',
-      reason: 'Configured ISR to pre-render 150+ machinery catalog pages statically. This delivered instant page loads and optimal SEO indexing while automatically validating and updating pages in the background when admin records changed.'
+      decision: 'LightGBM Gradient Boosting Engine',
+      reason: 'Outperformed traditional classifiers in tabular performance. Handled categorical features directly, maintained low memory footprints on local environments, and supported fast query times.'
     },
     {
-      decision: 'NextAuth.js Administration Gate',
-      reason: 'Configured NextAuth authentication rules to separate administrative tools from public catalog routes. Admins could manage listings, structure category maps, and read active customer B2B leads securely.'
+      decision: 'Rolling User Return History Feature',
+      reason: 'Constructed rolling return-to-purchase ratios per customer profile. This personal historical probability became the highest-weighted feature in predicting return risk.'
     }
   ],
-  problems: [
-    { problem: 'Offline-Only Catalogues', solution: 'Digitized a 150+ heavy machinery catalog across 8 categories from paper records.' },
-    { problem: 'Pricing Negotiation Terms', solution: 'Designed an enquiry-capture routing workflow rather than a standard e-commerce cart.' },
-    { problem: 'Static Data Maintenance', solution: 'Built a custom database-backed admin panel, eliminating developer intervention for edits.' },
-    { problem: 'SEO / Search Rankings', solution: 'Utilized Next.js server-side metadata generation and ISR to maximize discoverability.' }
+  experiments: [
+    { model: 'Logistic Regression (Baseline)', metric: 'ROC-AUC', score: '0.74', f1: '0.68' },
+    { model: 'Random Forest Classifier', metric: 'ROC-AUC', score: '0.89', f1: '0.84' },
+    { model: 'LightGBM (Final Model)', metric: 'ROC-AUC', score: '0.96', f1: '0.94' }
+  ],
+  featuresImportance: [
+    { name: 'user_historical_return_rate', weight: '38%' },
+    { name: 'product_category_return_rate', weight: '28%' },
+    { name: 'transaction_amount', weight: '18%' },
+    { name: 'seasonal_purchase_indicator', weight: '16%' }
   ],
   techMatrix: [
-    { area: 'Framework & Typing', tech: 'Next.js (App / Pages), TypeScript' },
-    { area: 'Styling & Layout', tech: 'Tailwind CSS, Responsive Grid Systems' },
-    { area: 'Database Storage', tech: 'MongoDB, Mongoose ODM' },
-    { area: 'Authentication Gate', tech: 'NextAuth.js, JWT Tokens' },
-    { area: 'Serving & Caching', tech: 'Next.js ISR, Edge Caching' },
-    { area: 'Hosting & Deploy', tech: 'Vercel, Production URL Configuration' }
+    { area: 'Core Language', tech: 'Python' },
+    { area: 'Data Manipulation', tech: 'Pandas, NumPy' },
+    { area: 'Machine Learning', tech: 'Scikit-learn, LightGBM' },
+    { area: 'Plotting & Visuals', tech: 'Matplotlib, Seaborn' },
+    { area: 'Validation Split', tech: 'StratifiedShuffleSplit (80/20)' },
+    { area: 'Environment', tech: 'Jupyter Notebooks, Anaconda' }
   ]
 };
 
-export default function LotusTraders() {
+export default function SmartReturn() {
   return (
     <div style={{ paddingTop: '68px', minHeight: '100vh', backgroundColor: 'var(--bg)', color: 'var(--text-primary)' }}>
       
@@ -67,8 +74,8 @@ export default function LotusTraders() {
           </Link>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
-            <span className="badge-live"><span className="live-dot" />Client Production</span>
-            <span className="badge-orange">Next.js · Full-Stack · B2B</span>
+            <span className="badge-live">Completed</span>
+            <span className="badge-orange">Machine Learning · Data Pipeline</span>
           </div>
 
           <h1
@@ -82,7 +89,7 @@ export default function LotusTraders() {
               marginBottom: '0.75rem',
             }}
           >
-            Lotus Traders Machinery
+            Smart Return Predictor
           </h1>
 
           <p
@@ -96,7 +103,7 @@ export default function LotusTraders() {
               lineHeight: 1.55,
             }}
           >
-            A high-performance B2B catalog and lead generation platform built from scratch for a heavy construction machinery supplier in Guwahati, India.
+            A high-accuracy predictive ML pipeline that structures historical transaction logs to forecast return risk and optimize retail fulfillment pipelines.
           </p>
 
           {/* Metrics Grid */}
@@ -112,10 +119,10 @@ export default function LotusTraders() {
             }}
           >
             {[
-              { value: '150+', label: 'Products Digitized' },
-              { value: '8', label: 'Equipment Categories' },
-              { value: '1', label: 'Production Client App' },
-              { value: 'Next.js ISR', label: 'Rendering Mode' }
+              { value: '96%', label: 'ROC-AUC Score' },
+              { value: '94%', label: 'F1 Classification' },
+              { value: 'LightGBM', label: 'Modeling Engine' },
+              { value: 'Stratified', label: 'Validation Split' }
             ].map(({ value, label }) => (
               <div
                 key={label}
@@ -134,25 +141,25 @@ export default function LotusTraders() {
         {/* OVERVIEW & PROBLEM */}
         <div className="case-study-section two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '3.5rem' }}>
           <div>
-            <div className="cs-section-label">Commercial B2B System</div>
-            <h2 className="cs-heading" style={{ fontSize: '1.75rem', marginBottom: '1.25rem' }}>Bridging Offline Sales to Digital Discovery</h2>
+            <div className="cs-section-label">Data Science Pipeline</div>
+            <h2 className="cs-heading" style={{ fontSize: '1.75rem', marginBottom: '1.25rem' }}>Predicting Return Likelihoods</h2>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
-              Lotus Traders manages heavy civil engineering equipment where pricing is strictly negotiated based on lease durations and quantity requirements. Traditional e-commerce shopping carts do not fit this business model. 
+              Product returns generate billions of dollars in operational costs for retail businesses. Standard databases keep transaction histories but rarely evaluate user return patterns to optimize checkout operations.
             </p>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.75 }}>
-              This platform replaces static paper sheets with a data-driven catalog that organizes specifications, lists features, and maps product relationships. Users can browse categories, discover similar machinery, and route instant structured enquiry leads directly to the sales team.
+              This machine learning project structures raw transactional logs into predictive feature records. By cleaning outliers, applying stratified splits to preserve unbalanced class ratios, and training boosting ensembles, the system forecasts returning risks before fulfillment.
             </p>
           </div>
 
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1.75rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-              <Globe size={16} style={{ color: 'var(--orange)' }} />
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 800 }}>Business Model Flow</h3>
+              <BarChart2 size={16} style={{ color: 'var(--orange)' }} />
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 800 }}>Feature Preprocessing Flow</h3>
             </div>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1rem' }}>
-              Rather than shopping checkouts, the engine processes direct negotiation intent:
+              How raw inputs are cleaned and prepared for training:
             </p>
-            {['Discover catalog machinery', 'Explore specs & attachments', 'Evaluate recommended relations', 'Submit B2B enquiry request', 'Admin follows up on sales lead'].map((item, i) => (
+            {['Load raw transaction datasets', 'Identify & impute missing record rows', 'Apply category label encoding', 'Perform log transforms on transaction values', 'Run stratified splits to balance validation'].map((item, i) => (
               <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', marginBottom: '0.4rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
                 <CheckCircle2 size={13} style={{ color: 'var(--orange)' }} />
                 <span>{item}</span>
@@ -161,90 +168,99 @@ export default function LotusTraders() {
           </div>
         </div>
 
-        {/* DATABASE RELATIONSHIPS DIAGRAM */}
+        {/* PIPELINE FLOW CHART DIAGRAM */}
         <div className="case-study-section">
-          <div className="cs-section-label">Database Schema</div>
-          <h2 className="cs-heading">MongoDB Relational Reference Graph</h2>
+          <div className="cs-section-label">Machine Learning Pipeline</div>
+          <h2 className="cs-heading">Model Ingestion & Evaluation Lifecycle</h2>
           
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', padding: '2rem', marginTop: '1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ width: '100%', maxWidth: '380px', opacity: 0.85 }} dangerouslySetInnerHTML={{ __html: lotusSvg }} />
+            <div style={{ width: '100%', maxWidth: '500px', opacity: 0.85 }} dangerouslySetInnerHTML={{ __html: smartReturnSvg }} />
           </div>
         </div>
 
-        {/* ROLES & SECTIONS */}
+        {/* DATA STEPS */}
         <div className="case-study-section">
-          <div className="cs-section-label">My Contribution</div>
-          <h2 className="cs-heading">Development Areas</h2>
+          <div className="cs-section-label">Pipeline Sections</div>
+          <h2 className="cs-heading">Development Phases</h2>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem', marginTop: '1.5rem' }}>
-            {project.roles.map((role, idx) => (
+            {project.pipeline.map((p, idx) => (
               <div key={idx} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                  <Database size={16} style={{ color: 'var(--orange)' }} />
-                  <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-primary)' }}>{role.title}</h4>
+                  <Layers size={16} style={{ color: 'var(--orange)' }} />
+                  <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-primary)' }}>{p.title}</h4>
                 </div>
-                <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>{role.desc}</p>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>{p.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* ADMIN PANEL STRUCTURE */}
+        {/* EXPERIMENT MATRIX */}
         <div className="case-study-section">
-          <div className="cs-section-label">Administrative Control</div>
-          <h2 className="cs-heading">NextAuth Administrative Portal</h2>
+          <div className="cs-section-label">Benchmark Logs</div>
+          <h2 className="cs-heading">Model Experimentation Matrix</h2>
           
           <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '2.5rem', marginTop: '1.5rem' }} className="two-col-grid">
             <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', padding: '2rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
-                <Shield size={18} style={{ color: 'var(--orange)' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800 }}>Admin Access Map</h3>
+                <Settings size={18} style={{ color: 'var(--orange)' }} />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800 }}>Model Benchmarks</h3>
               </div>
-              <pre className="arch-diagram" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>{`  Customer ──→ Public Catalog (SEO Indexed / Fast ISR Pages)
-  
-  Admin ────→ NextAuth Gate (Protected Portal)
-                   │
-         ┌─────────┴─────────┐
-         ▼                   ▼
-   [ CMS Manager ]     [ Leads Inbox ]
-   • Add Machinery     • View enquiries
-   • Map Categories    • Track metadata
-   • Edit Spec Cards   • Contact routes`}</pre>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', borderBottom: '1px solid var(--border)', pb: '0.5rem', fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+                  <span>MODEL</span>
+                  <span>ROC-AUC</span>
+                  <span>F1-SCORE</span>
+                </div>
+                {project.experiments.map((exp, idx) => (
+                  <div key={idx} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    <span style={{ fontWeight: exp.model.includes('Final') ? 800 : 400, color: exp.model.includes('Final') ? 'var(--orange-light)' : 'var(--text-secondary)' }}>{exp.model}</span>
+                    <span>{exp.score}</span>
+                    <span>{exp.f1}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: '1rem' }}>
-                A critical design goal was making the catalogue fully maintainable without developer assistance. The client can edit high-res images, modify technical specifications, change equipment relations, and read incoming purchase leads directly from a custom CMS.
+                We explored standard classification paradigms. The baseline Logistic Regression model served as a reference point but struggled with nonlinear interaction features.
               </p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.75 }}>
-                Authentication rules are strictly managed at the framework level via NextAuth.js JWT adapters, ensuring administrative tools and leads routes remain closed to search bots and public visitors.
+                Ensemble architectures resolved the feature relationships. LightGBM provided the best balance, delivering a validation ROC-AUC score of 0.96 with fast predictions suitable for live checkouts.
               </p>
             </div>
           </div>
         </div>
 
-        {/* SOLVED PROBLEMS */}
+        {/* MODEL INTERPRETABILITY */}
         <div className="case-study-section">
-          <div className="cs-section-label">Engineering Solutions</div>
-          <h2 className="cs-heading">Challenges Solved</h2>
+          <div className="cs-section-label">Interpretability</div>
+          <h2 className="cs-heading">Feature Importances (LightGBM)</h2>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', marginTop: '1.5rem' }}>
-            {project.problems.map((p, idx) => (
-              <div key={idx} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1.5rem' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--orange)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Problem Space</div>
-                <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>{p.problem}</div>
-                <div style={{ width: '20px', height: '1px', background: 'var(--border)', marginBottom: '0.75rem' }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Architecture Fix</div>
-                <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{p.solution}</p>
-              </div>
-            ))}
+          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', padding: '2rem', marginTop: '1.5rem' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+              The relative influence of engineered features in predicting transaction returns:
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {project.featuresImportance.map((feat, idx) => (
+                <div key={idx} style={{ display: 'grid', gridTemplateColumns: '2fr 3fr 1fr', gap: '1rem', alignItems: 'center' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{feat.name}</span>
+                  <div style={{ height: '8px', background: 'var(--border)', borderRadius: '4px', overflow: 'hidden' }}>
+                    <div style={{ width: feat.weight, height: '100%', background: 'linear-gradient(90deg, var(--orange), var(--gold))', borderRadius: '4px' }} />
+                  </div>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--orange-light)', fontWeight: 700 }}>{feat.weight}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* ENGINEERING DECISIONS */}
         <div className="case-study-section">
           <div className="cs-section-label">Engineering Decisions</div>
-          <h2 className="cs-heading">Architecture Trade-offs</h2>
+          <h2 className="cs-heading">Key Technical Choices</h2>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
             {project.decisions.map((d, i) => (

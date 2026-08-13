@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   const links = [
+    { label: 'Home', to: '/' },
     { label: 'Projects', to: '/projects' },
-    { label: 'ML / Data', to: '/ml' },
+    { label: 'Experience', to: '/experience' },
     { label: 'About', to: '/about' },
     { label: 'Contact', to: '/contact' },
   ];
@@ -31,42 +30,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="app-footer">
-      <div className="container-site">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            gap: '3rem',
-            alignItems: 'start',
-            paddingBottom: '2.5rem',
-            borderBottom: '1px solid var(--border)',
-            marginBottom: '2rem',
-          }}
-          className="footer-grid"
-        >
+    <footer className="border-t border-white/[0.05] bg-white/[0.02] backdrop-blur-xl py-12 mt-[-160px] relative z-10">
+      <div className="container-site max-w-[1400px] mx-auto px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start footer-grid">
           {/* Brand */}
           <div>
-            <div
-              className="name-brand"
-              style={{
-                fontSize: '1.25rem',
-                fontWeight: 900,
-                color: 'var(--text-primary)',
-                marginBottom: '0.75rem',
-              }}
-            >
-              Ayush<span style={{ color: 'var(--orange)' }}>.</span>
+            <div className="name-brand text-xl font-black text-neutral-200 mb-3">
+              Ayush Shandilya
             </div>
-            <p
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.88rem',
-                color: 'var(--text-muted)',
-                lineHeight: 1.65,
-                maxWidth: '240px',
-              }}
-            >
+            <p className="text-sm text-neutral-400 leading-relaxed max-w-[240px]">
               Software Engineer & Technical Product Builder.
               B.Tech, IIT Guwahati.
             </p>
@@ -74,33 +46,15 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <div
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.7rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--text-muted)',
-                marginBottom: '1rem',
-              }}
-            >
+            <div className="font-mono text-[0.7rem] font-semibold tracking-widest uppercase text-neutral-400 mb-4">
               Navigation
             </div>
-            <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <nav className="flex flex-col gap-2.5">
               {links.map(({ label, to }) => (
                 <Link
                   key={to}
                   to={to}
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '0.9rem',
-                    color: 'var(--text-secondary)',
-                    textDecoration: 'none',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseEnter={(e) => (e.target.style.color = 'var(--text-primary)')}
-                  onMouseLeave={(e) => (e.target.style.color = 'var(--text-secondary)')}
+                  className="text-sm text-neutral-300 hover:text-white no-underline transition-colors duration-200"
                 >
                   {label}
                 </Link>
@@ -110,38 +64,17 @@ export default function Footer() {
 
           {/* Socials */}
           <div>
-            <div
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.7rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--text-muted)',
-                marginBottom: '1rem',
-              }}
-            >
+            <div className="font-mono text-[0.7rem] font-semibold tracking-widest uppercase text-neutral-400 mb-4">
               Connect
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div className="flex flex-col gap-2.5">
               {socials.map(({ label, icon, href }) => (
                 <a
                   key={label}
                   href={href}
                   target={label !== 'Email' ? '_blank' : undefined}
                   rel="noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '0.9rem',
-                    color: 'var(--text-secondary)',
-                    textDecoration: 'none',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--orange-light)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                  className="inline-flex items-center gap-2 text-sm text-neutral-300 hover:text-orange-400 no-underline transition-colors duration-200"
                 >
                   {icon}
                   {label}
@@ -150,46 +83,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Bottom bar */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '0.75rem',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.72rem',
-              color: 'var(--text-muted)',
-            }}
-          >
-            © {year} <span className="name-brand" style={{fontSize: '0.8rem'}}>Ayush Shandilya</span>. B.Tech IIT Guwahati.
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.72rem',
-              color: 'var(--text-muted)',
-            }}
-          >
-            Built with React + Tailwind
-          </span>
-        </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .footer-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-        }
-      `}</style>
     </footer>
   );
 }

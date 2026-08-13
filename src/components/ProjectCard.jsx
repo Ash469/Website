@@ -1,31 +1,92 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ExternalLink } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 /**
  * ProjectCard
  * variant: 'featured' | 'small'
  */
 export default function ProjectCard({ project, variant = 'featured' }) {
-  const { slug, id, name, tagline, category, tech = [], metrics = [], shortDesc, status } = project;
+  const { slug, id, name, tagline, category, categories = [], tech = [], metrics = [], shortDesc, status } = project;
   const caseStudyPath = `/projects/${slug || id}`;
+  const displayCategory = category || (categories.length > 0 ? categories.join(' · ') : '');
+
+  // Helper to render status badges with distinct colors matching design tokens
+  const renderStatusBadge = () => {
+    if (!status) return null;
+    
+    const normalizedStatus = status.toLowerCase();
+    
+    if (normalizedStatus === 'production') {
+      return (
+        <span className="badge-live" style={{ borderColor: '#4ADE80', color: '#4ADE80' }}>
+          <span className="live-dot" style={{ backgroundColor: '#4ADE80' }} />
+          Production
+        </span>
+      );
+    }
+    if (normalizedStatus === 'completed') {
+      return (
+        <span className="badge-live" style={{ borderColor: '#60A5FA', color: '#60A5FA' }}>
+          Completed
+        </span>
+      );
+    }
+    if (normalizedStatus === 'ongoing' || normalizedStatus === 'currently building') {
+      return (
+        <span className="badge-live" style={{ borderColor: 'var(--gold)', color: 'var(--gold)' }}>
+          <span className="live-dot" style={{ backgroundColor: 'var(--gold)', animation: 'pulse 1.5s infinite' }} />
+          Currently Building
+        </span>
+      );
+    }
+    if (normalizedStatus === 'archived') {
+      return (
+        <span className="badge-live" style={{ borderColor: '#9CA3AF', color: '#9CA3AF' }}>
+          Archived
+        </span>
+      );
+    }
+    if (normalizedStatus === 'freelance') {
+      return (
+        <span className="badge-live" style={{ borderColor: '#C084FC', color: '#C084FC' }}>
+          Freelance
+        </span>
+      );
+    }
+    if (normalizedStatus === 'experimental') {
+      return (
+        <span className="badge-live" style={{ borderColor: '#F472B6', color: '#F472B6' }}>
+          Experimental
+        </span>
+      );
+    }
+    
+    return (
+      <span className="badge-live">
+        {status}
+      </span>
+    );
+  };
 
   if (variant === 'small') {
     return (
       <Link to={caseStudyPath} className="card" style={{ display: 'block', padding: '1.5rem', textDecoration: 'none' }}>
-        {/* Category */}
-        <div
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.68rem',
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: 'var(--text-muted)',
-            marginBottom: '0.6rem',
-          }}
-        >
-          {category}
+        {/* Category + Status */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.68rem',
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'var(--text-muted)',
+            }}
+          >
+            {displayCategory}
+          </div>
+          {renderStatusBadge()}
         </div>
 
         {/* Name */}
@@ -77,7 +138,7 @@ export default function ProjectCard({ project, variant = 'featured' }) {
             color: 'var(--orange)',
           }}
         >
-          View Case Study
+          View Details
           <ArrowUpRight size={14} />
         </div>
       </Link>
@@ -125,14 +186,9 @@ export default function ProjectCard({ project, variant = 'featured' }) {
               color: 'var(--text-muted)',
             }}
           >
-            {category}
+            {displayCategory}
           </span>
-          {status === 'production' && (
-            <span className="badge-live">
-              <span className="live-dot" />
-              Production
-            </span>
-          )}
+          {renderStatusBadge()}
         </div>
 
         {/* Name */}
@@ -212,7 +268,7 @@ export default function ProjectCard({ project, variant = 'featured' }) {
 
         {/* CTA */}
         <Link to={caseStudyPath} className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
-          View Case Study
+          View Details
           <ArrowUpRight size={15} />
         </Link>
       </div>

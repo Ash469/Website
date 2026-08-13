@@ -19,6 +19,10 @@ import NSS from './pages/projects/NSS/NSS';
 import SchoolMgmt from './pages/projects/SchoolMgmt/SchoolMgmt';
 import AppMgmt from './pages/projects/AppMgmt/AppMgmt';
 import Udgam from './pages/projects/Udgam/Udgam';
+import SmartReturn from './pages/projects/SmartReturn/SmartReturn';
+import Groundwater from './pages/projects/Groundwater/Groundwater';
+import BullMQ from './pages/projects/BullMQ/BullMQ';
+import StepWars from './pages/projects/StepWars/StepWars';
 
 // Experience Details
 import LotusTradersExp from './pages/experience/LotusTraders/LotusTradersExp';
@@ -48,6 +52,10 @@ export default function App() {
           <Route path="projects/school-management" element={<SchoolMgmt />} />
           <Route path="projects/application-management" element={<AppMgmt />} />
           <Route path="projects/udgam" element={<Udgam />} />
+          <Route path="projects/smart-return" element={<SmartReturn />} />
+          <Route path="projects/groundwater-prediction" element={<Groundwater />} />
+          <Route path="projects/bulk-email-runner" element={<BullMQ />} />
+          <Route path="projects/step-wars" element={<StepWars />} />
 
           {/* Experience Details */}
           <Route path="experience/lotus-traders" element={<LotusTradersExp />} />
