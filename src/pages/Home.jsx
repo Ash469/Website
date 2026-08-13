@@ -265,15 +265,74 @@ export default function Home() {
       >
         <div className="container-site">
           <div style={{ marginBottom: '2.5rem' }}>
-            <div className="section-eyebrow">Career & Leadership</div>
-            <h2 className="section-title">Experience Preview</h2>
+            <h2 className="section-title">Experience</h2>
           </div>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-            A mix of professional client work and technical leadership roles at IIT Guwahati.
-          </p>
-          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+
+          {/* 3 Experience Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {[
+              {
+                company: 'Lotus Traders Machinery',
+                role: 'Web Developer',
+                period: 'Client Deployment',
+                description: 'Engineered a B2B construction machinery catalogue & enquiry management platform from scratch for an active commercial client.',
+                path: '/experience/lotus-traders',
+                logo: '/src/pages/experience/LotusTraders/lotusTraders.png'
+              },
+              {
+                company: 'PIMS / Ease Exit',
+                role: 'Flutter & Full-Stack Developer',
+                period: 'Production Deployment',
+                description: 'Designed and deployed a multi-stage hostel leave management and QR gate-verification mobile app used by over 2,000 students.',
+                path: '/experience/pims',
+                logo: '/src/pages/experience/PIMS/logo.png'
+              },
+              {
+                company: 'Application Management System',
+                role: 'App Developer',
+                period: 'Production Deployment',
+                description: 'Built a multi-role Flutter & Firebase mobile system for end-to-end application submission, admin review, and real-time status tracking.',
+                path: '/experience/application-management',
+                logo: '/src/pages/experience/AppMgmt/logo.jpg'
+              }
+            ].map((exp, idx) => (
+              <div 
+                key={idx}
+                className="bg-bg-card border border-border-subtle hover:border-orange-500/30 rounded-3xl p-6 transition-all duration-300 shadow-card hover:shadow-card-hover flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="flex items-center gap-4 mb-4 pb-3 border-b border-border-subtle">
+                    <div className="w-12 h-12 rounded-xl bg-bg-surface border border-border-subtle overflow-hidden flex items-center justify-center shrink-0 p-1">
+                      <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain rounded-lg" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-base font-bold text-text-primary group-hover:text-orange-400 transition-colors">
+                        {exp.company}
+                      </h3>
+                      <div className="font-heading text-xs text-text-muted mt-0.5">{exp.role}</div>
+                    </div>
+                  </div>
+                  <p className="font-body text-xs sm:text-sm text-text-secondary leading-relaxed mb-6">
+                    {exp.description}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-border-subtle flex items-center justify-between">
+                  <span className="font-mono text-[10px] text-text-muted font-bold tracking-wider uppercase">{exp.period}</span>
+                  <Link 
+                    to={exp.path}
+                    className="inline-flex items-center gap-1 text-xs font-heading font-bold text-orange-400 hover:text-orange-300 transition-colors"
+                  >
+                    Details <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Link to="/experience" className="btn btn-secondary">
-              View Experience Details <ArrowRight size={16} />
+              View All Experiences <ArrowRight size={16} />
             </Link>
           </div>
         </div>

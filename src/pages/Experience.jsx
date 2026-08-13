@@ -268,11 +268,17 @@ export default function Experience() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-border-subtle">
-                    <Link to={exp.path} className="group">
-                      <h3 className="font-display text-xl font-extrabold text-text-primary group-hover:text-orange-400 transition-colors">
-                        {exp.organization}
-                      </h3>
+
+                    <h3 className="font-display text-xl font-extrabold text-text-primary group-hover:text-orange-400 transition-colors">
+                      {exp.organization}
+                    </h3>
+                    <Link
+                      to={exp.path}
+                      className="px-4 py-1.5 bg-orange-500/10 border border-orange-500/30 text-orange-400 hover:bg-orange-500/20 rounded-xl font-heading text-xs font-bold flex items-center gap-1 transition-colors shrink-0"
+                    >
+                      Details <ArrowUpRight className="w-3.5 h-3.5" />
                     </Link>
+
                   </div>
 
                   <p className="font-body text-sm text-text-secondary leading-relaxed mb-6">
@@ -280,13 +286,16 @@ export default function Experience() {
                   </p>
                 </div>
 
-                <div className="space-y-2.5 pt-4 border-t border-border-subtle">
-                  {exp.roles.map((role, rIdx) => (
-                    <div key={rIdx} className="flex items-center justify-between text-xs sm:text-sm font-heading">
-                      <span className="font-semibold text-text-primary">{role.title}</span>
-                      <span className="font-mono text-text-muted">{role.duration}</span>
-                    </div>
-                  ))}
+                <div className="flex justify-between items-end gap-4 pt-4 border-t border-border-subtle mt-4">
+                  <div className="space-y-2.5 flex-grow">
+                    {exp.roles.map((role, rIdx) => (
+                      <div key={rIdx} className="flex items-center justify-between text-xs sm:text-sm font-heading">
+                        <span className="font-semibold text-text-primary">{role.title}</span>
+                        <span className="font-mono text-text-muted">{role.duration}</span>
+                      </div>
+                    ))}
+                  </div>
+
                 </div>
               </div>
             ))}
