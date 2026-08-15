@@ -11,6 +11,7 @@ import {
   MapPin, 
   Clock 
 } from 'lucide-react';
+import image2Img from '../../image2.png';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -90,7 +91,7 @@ export default function Contact() {
               <div className="flex items-center gap-6 mb-5">
                 <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-orange-500 shrink-0 shadow-orange-glow">
                   <img 
-                    src="/image2.png" 
+                    src={image2Img} 
                     alt="Ayush Ranjan Shandilya" 
                     className="w-full h-full object-cover" 
                   />
