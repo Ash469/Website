@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import heroImg from '../../hero.png';
+import image2Img from '../../image2.png';
 
 export default function HeroEditorial() {
   return (
@@ -53,12 +55,12 @@ export default function HeroEditorial() {
         className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 w-[240px] sm:w-[320px] lg:w-[350px] h-[72%] max-h-[72vh] rounded-[32px] overflow-hidden border border-white/10 pointer-events-none shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
       >
         <img
-          src="/hero.png"
+          src={heroImg}
           alt="Ayush Shandilya"
           className="w-full h-full object-cover object-top"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = '/image2.png';
+            e.target.src = image2Img;
           }}
         />
       </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SmoothScroll from '../components/SmoothScroll';
 
 export default function RootLayout() {
   const { pathname } = useLocation();
@@ -12,12 +13,15 @@ export default function RootLayout() {
   }, [pathname]);
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-      <Navbar />
-      <main className="page-enter pb-40">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+    <SmoothScroll>
+      <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+        <Navbar />
+        <main className="page-enter pb-40">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </SmoothScroll>
   );
 }
+

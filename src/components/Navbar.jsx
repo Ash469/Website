@@ -41,7 +41,7 @@ export default function Navbar() {
           {/* Brand */}
           <Link to="/" className="nav-brand">
             <span className="brand-dot" />
-            <span className="name-brand hide-mobile">AYUSH / SHANDILYA</span>
+            <span className="name-brand hide-mobile">AYUSH  SHANDILYA</span>
             <span className="name-brand show-mobile">AYUSH</span>
           </Link>
 

@@ -21,6 +21,7 @@ import {
   BarChart2,
   HardDrive
 } from 'lucide-react';
+import image1Img from '../../image1.png';
 
 // Tech SVG Icons
 const icons = {
@@ -188,7 +189,7 @@ export default function About() {
                 
                 <div className="relative w-full h-[420px] sm:h-[480px] rounded-3xl overflow-hidden border-2 border-border-warm bg-bg-card shadow-card">
                   <img 
-                    src="/image1.png" 
+                    src={image1Img} 
                     alt="Ayush Ranjan Shandilya" 
                     className="w-full h-full object-cover object-top filter contrast-[1.05] group-hover:scale-105 transition-transform duration-500"
                   />

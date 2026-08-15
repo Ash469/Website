@@ -40,8 +40,8 @@ export default function Contact() {
     },
     {
       label: 'IIT Guwahati Academic',
-      address: 'ayush.shandilya@iitg.ac.in',
-      href: 'mailto:ayush.shandilya@iitg.ac.in'
+      address: 'ayush.r@iitg.ac.in',
+      href: 'mailto:ayush.r@iitg.ac.in'
     }
   ];
 
