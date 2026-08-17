@@ -124,36 +124,36 @@ export default function Experience() {
   return (
     <div className="pt-20 min-h-screen bg-bg text-text-primary">
       {/* ── Section 1: Professional Engagements (3 Featured Cards) ── */}
-      <section className="py-1">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center gap-3 mb-10">
-            <div className="p-3 bg-orange-500/10 border border-orange-500/20 rounded-2xl text-orange-500">
-              <Briefcase className="w-6 h-6" />
+      <section className="py-6">
+        <div className="container-site">
+          <div className="flex items-center gap-3 mb-8 sm:mb-10">
+            <div className="p-3 bg-orange-500/10 border border-orange-500/20 rounded-2xl text-orange-500 shrink-0">
+              <Briefcase className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
-              <h2 className="font-display text-2xl sm:text-3xl font-black text-text-primary">
+              <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-black text-text-primary">
                 Professional Experience
               </h2>
-              <p className="font-body text-sm text-text-muted">
+              <p className="font-body text-xs sm:text-sm text-text-muted">
                 Client contracts & verified software engineering roles
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 gap-6 sm:gap-8">
             {professionalExperiences.map((exp) => (
               <div
                 key={exp.id}
-                className="group bg-bg-card border border-border-warm rounded-3xl p-7 sm:p-9 shadow-card hover:shadow-card-hover hover:border-orange-500/50 transition-all duration-300 relative overflow-hidden"
+                className="group bg-bg-card border border-border-warm rounded-3xl p-5 sm:p-7 md:p-9 shadow-card hover:shadow-card-hover hover:border-orange-500/50 transition-all duration-300 relative overflow-hidden"
               >
                 {/* Accent top gradient */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 via-gold to-orange-500 opacity-60 group-hover:opacity-100 transition-opacity" />
 
                 <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-6">
                   {/* Left: Logo & Titles */}
-                  <div className="flex items-start gap-5">
+                  <div className="flex items-start gap-4 sm:gap-5">
                     {/* Logo container */}
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-bg-surface border border-border-subtle overflow-hidden flex items-center justify-center shrink-0 p-2 shadow-inner">
+                    <div className="w-14 h-14 sm:w-18 sm:h-18 rounded-2xl bg-bg-surface border border-border-subtle overflow-hidden flex items-center justify-center shrink-0 p-2 shadow-inner">
                       {exp.logo ? (
                         <img
                           src={exp.logo}
@@ -167,24 +167,24 @@ export default function Experience() {
 
                     <div>
                       <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                        <span className="font-mono text-xs text-orange-400 font-semibold uppercase tracking-wider">
+                        <span className="font-mono text-[10px] sm:text-xs text-orange-400 font-semibold uppercase tracking-wider">
                           {exp.domain}
                         </span>
                       </div>
 
-                      <h3 className="font-display text-2xl sm:text-3xl font-black text-text-primary group-hover:text-orange-400 transition-colors">
+                      <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-text-primary group-hover:text-orange-400 transition-colors">
                         {exp.company}
                       </h3>
 
-                      <div className="font-heading text-base font-semibold text-text-secondary mt-0.5">
+                      <div className="font-heading text-sm sm:text-base font-semibold text-text-secondary mt-0.5">
                         {exp.role}
                       </div>
                     </div>
                   </div>
 
                   {/* Right: Verified Badge & PDF Link */}
-                  <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 shrink-0">
-                    <div className="flex items-center gap-4 mt-1">
+                  <div className="flex flex-wrap items-center lg:flex-col lg:items-end gap-3 shrink-0">
+                    <div className="flex flex-wrap items-center gap-3">
                       {exp.pdf && (
                         <a
                           href={exp.pdf}
@@ -192,12 +192,12 @@ export default function Experience() {
                           rel="noreferrer"
                           className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-emerald-400 hover:text-emerald-300 transition-colors underline decoration-emerald-500/30 underline-offset-4"
                         >
-                          <FileText className="w-3.5 h-3.5" /> View PDF Contract <ExternalLink className="w-3 h-3" />
+                          <FileText className="w-3.5 h-3.5" /> Contract PDF <ExternalLink className="w-3 h-3" />
                         </a>
                       )}
                       <Link
                         to={exp.path}
-                        className="inline-flex items-center gap-1.5 text-sm font-heading font-bold text-orange-400 hover:text-orange-300 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-heading font-bold text-orange-400 hover:text-orange-300 transition-colors"
                       >
                         Details <ArrowUpRight className="w-4 h-4" />
                       </Link>
@@ -206,16 +206,16 @@ export default function Experience() {
                 </div>
 
                 {/* Description */}
-                <p className="font-body text-base text-text-secondary mb-6 leading-relaxed">
+                <p className="font-body text-sm sm:text-base text-text-secondary mb-6 leading-relaxed">
                   {exp.description}
                 </p>
 
                 {/* Key Highlights */}
-                <div className="bg-bg-surface/70 border border-border-subtle rounded-2xl p-5 mb-6 space-y-3">
-                  <div className="font-mono text-xs text-text-muted uppercase tracking-wider font-semibold">
+                <div className="bg-bg-surface/70 border border-border-subtle rounded-2xl p-4 sm:p-5 mb-6 space-y-3">
+                  <div className="font-mono text-[10px] sm:text-xs text-text-muted uppercase tracking-wider font-semibold">
                     Key Deliverables:
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm font-body text-text-secondary">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm font-body text-text-secondary">
                     {exp.highlights.map((h, i) => (
                       <div key={i} className="flex items-start gap-2.5">
                         <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
@@ -230,7 +230,7 @@ export default function Experience() {
                   {exp.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1 bg-bg-surface border border-border-subtle rounded-lg text-xs font-mono text-text-secondary"
+                      className="px-2.5 py-1 bg-bg-surface border border-border-subtle rounded-lg text-xs font-mono text-text-secondary"
                     >
                       {t}
                     </span>

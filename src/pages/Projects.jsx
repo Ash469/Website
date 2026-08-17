@@ -96,14 +96,7 @@ export default function Projects() {
         <div className="container-site">
           {/* Filters Row */}
           <div 
-            style={{ 
-              display: 'flex', 
-              flexWrap: 'wrap', 
-              gap: '0.5rem', 
-              marginBottom: '2.5rem', 
-              borderBottom: '1px solid var(--border)', 
-              paddingBottom: '1rem' 
-            }}
+            className="flex flex-wrap gap-2 mb-8 border-b border-border pb-4 overflow-x-auto"
           >
             {FILTERS.map((tab) => (
               <button
@@ -111,7 +104,7 @@ export default function Projects() {
                 onClick={() => setActiveTab(tab)}
                 className={`tab-pill-button ${activeTab === tab ? 'active' : ''}`}
                 style={{
-                  padding: '0.4rem 1.1rem',
+                  padding: '0.45rem 1.1rem',
                   fontSize: '0.78rem',
                   fontWeight: 600,
                   fontFamily: 'var(--font-mono)',
@@ -123,6 +116,8 @@ export default function Projects() {
                   color: activeTab === tab ? 'var(--text-primary)' : 'var(--text-secondary)',
                   borderRadius: '30px',
                   cursor: 'pointer',
+                  minHeight: '38px',
+                  whiteSpace: 'nowrap',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
                 onMouseEnter={(e) => {
@@ -145,11 +140,7 @@ export default function Projects() {
 
           {/* Grid Layout */}
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-              gap: '1.75rem',
-            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filteredProjects.map((project, index) => {
               const displayIndex = String(index + 1).padStart(2, '0');
@@ -158,15 +149,15 @@ export default function Projects() {
               
               return (
                 <RevealItem key={project.id} delay={delay}>
-                  <div style={{ position: 'relative' }} className="project-card-wrapper">
+                  <div style={{ position: 'relative', height: '100%' }} className="project-card-wrapper">
                     {/* Top index number */}
                     <div
                       style={{
                         position: 'absolute',
                         top: '1.25rem',
-                        right: '2rem',
+                        right: '1.5rem',
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '0.9rem',
+                        fontSize: '0.85rem',
                         fontWeight: 700,
                         color: 'rgba(232, 98, 42, 0.25)',
                         zIndex: 2,

@@ -225,20 +225,14 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="container-site relative z-20">
-          <div className="mb-12 reveal-el">
-            <span className="section-eyebrow">Professional History</span>
-            <h2 className="section-title mt-2">Active Engineering Impact</h2>
-          </div>
-
-          {/* Experience in Bento layout (Techniche/Lotus span large (8), PIMS/AppMgmt span small (4)) */}
-          <div className="bento-grid gap-7 mb-12">
+        <div className="container-site relative           {/* Experience in Bento layout (Techniche/Lotus span large (8), PIMS/AppMgmt span small (4)) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-12">
             {professionalExperiences.map((exp, idx) => {
               const isLarge = idx === 0 || idx === 3;
               return (
                 <div
                   key={exp.id}
-                  className={`reveal-el glow-card ${isLarge ? 'bento-card-large' : 'bento-card-small'} p-7 flex flex-col justify-between group`}
+                  className={`reveal-el glow-card ${isLarge ? 'lg:col-span-8' : 'lg:col-span-4'} p-6 sm:p-7 flex flex-col justify-between group`}
                 >
                   <div>
                     <div className="flex items-center gap-4 mb-4 pb-3 border-b border-border-subtle">
@@ -300,9 +294,9 @@ export default function Home() {
           </div>
 
           {/* Projects in normal grid (3 columns) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {homeProjects.map((project) => (
-              <div key={project.id} className="reveal-el glow-card">
+              <div key={project.id} className="reveal-el glow-card flex flex-col">
                 <ProjectCard project={project} variant="featured" />
               </div>
             ))}
@@ -329,7 +323,7 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="w-full max-w-[95%] mx-auto px-4 md:px-8 relative z-20">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
           <div className="mb-16 text-center reveal-el">
             <span className="section-eyebrow">Campus Leadership</span>
             <h2 className="section-title mt-2">IIT Guwahati Activities & Societies</h2>
@@ -365,8 +359,8 @@ export default function Home() {
                     {/* Node Dot */}
                     <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-[#0C0A08] border-2 border-orange-500 transform -translate-x-1/2 top-7 z-30 shadow-[0_0_8px_#E8622A]" />
 
-                    {/* Timeline card container (Device Display Style with Two-Layer Screen structure) */}
-                    <div className={`w-full md:w-[34%] ml-12 md:ml-0 ${isEven ? 'md:mr-32' : 'md:ml-32'} bg-[#1E1A16] border border-border-warm rounded-[32px] p-2.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] hover:shadow-card-hover hover:border-orange-500/30 transition-all duration-300 relative group timeline-card-el`}>
+                    {/* Timeline card container */}
+                    <div className={`w-full md:w-[45%] lg:w-[42%] ml-10 md:ml-0 ${isEven ? 'md:mr-8 lg:mr-16' : 'md:ml-8 lg:ml-16'} bg-[#1E1A16] border border-border-warm rounded-[28px] sm:rounded-[32px] p-2.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] hover:shadow-card-hover hover:border-orange-500/30 transition-all duration-300 relative group timeline-card-el`}>
                       
                       {/* Device Top Speaker/Camera punch-hole */}
                       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-[#0C0A08] border border-[#2A2420] flex items-center justify-center shadow-inner z-20">
@@ -374,23 +368,23 @@ export default function Home() {
                       </div>
 
                       {/* Inner Screen Layer */}
-                      <div className="bg-[#141210] rounded-[24px] pt-8 px-6 pb-6 border border-[#2A2420] h-full flex flex-col justify-between">
+                      <div className="bg-[#141210] rounded-[20px] sm:rounded-[24px] pt-8 px-4 sm:px-6 pb-6 border border-[#2A2420] h-full flex flex-col justify-between">
                         <div>
                           {/* Serif Index Number */}
-                          <div className="font-serif italic text-3xl text-orange-500/50 mb-3 select-none">
+                          <div className="font-serif italic text-2xl sm:text-3xl text-orange-500/50 mb-3 select-none">
                             0{idx + 1}
                           </div>
 
-                          <div className="flex items-center justify-between gap-4 mb-4 pb-2 border-b border-[#2A2420]">
+                          <div className="flex items-center justify-between gap-3 mb-4 pb-2 border-b border-[#2A2420]">
                             <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-xl bg-bg-surface border border-[#2A2420] overflow-hidden flex items-center justify-center shrink-0 p-1">
+                              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-bg-surface border border-[#2A2420] overflow-hidden flex items-center justify-center shrink-0 p-1">
                                 {role.logo ? (
                                   <img src={role.logo} alt={role.organization} className="w-full h-full object-contain rounded-md" />
                                 ) : (
                                   <Award className="w-5 h-5 text-orange-500" />
                                 )}
                               </div>
-                              <h3 className="font-display text-sm md:text-base font-bold text-text-primary group-hover:text-orange-400 transition-colors">
+                              <h3 className="font-display text-xs sm:text-sm md:text-base font-bold text-text-primary group-hover:text-orange-400 transition-colors">
                                 {role.organization}
                               </h3>
                             </div>
@@ -399,7 +393,7 @@ export default function Home() {
                           {/* Multi-role mapping */}
                           <div className="space-y-3 my-4">
                             {role.roles.map((r, rIdx) => (
-                              <div key={rIdx} className="flex flex-col sm:flex-row justify-between text-xs font-heading">
+                              <div key={rIdx} className="flex flex-col sm:flex-row justify-between text-xs font-heading gap-1">
                                 <span className="font-semibold text-text-secondary">{r.title}</span>
                                 <span className="font-mono text-text-muted text-[10px]">{r.duration}</span>
                               </div>
@@ -421,6 +415,22 @@ export default function Home() {
                             <Link
                               to={role.path}
                               className="inline-flex items-center gap-1 text-xs font-heading font-bold text-[#F28C54] hover:text-[#E8622A] transition-colors"
+                            >
+                              Details <ArrowUpRight className="w-3.5 h-3.5" />
+                            </Link>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Spacer for desktop alignment */}
+                    <div className="hidden md:block w-[50%]" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>assName="inline-flex items-center gap-1 text-xs font-heading font-bold text-[#F28C54] hover:text-[#E8622A] transition-colors"
                             >
                               Details <ArrowUpRight className="w-3.5 h-3.5" />
                             </Link>

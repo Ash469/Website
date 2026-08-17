@@ -70,7 +70,8 @@
 @media (max-width: 768px) {
   .exp-section {
     flex-direction: column;
-    padding: var(--space-6);
+    padding: var(--space-5);
+    gap: var(--space-4);
   }
   .exp-section.reverse {
     flex-direction: column;
@@ -78,8 +79,9 @@
   .exp-image,
   .exp-content {
     max-width: 100%;
+    width: 100%;
   }
   .exp-image {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
   }
 }

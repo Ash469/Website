@@ -144,10 +144,9 @@ export default function ProjectCard({ project, variant = 'featured' }) {
       </Link>
     );
   }
-
   // Featured variant
   return (
-    <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       {/* Top accent bar */}
       <div
         style={{
@@ -159,8 +158,8 @@ export default function ProjectCard({ project, variant = 'featured' }) {
 
       {/* Header */}
       <div
+        className="p-5 sm:p-7"
         style={{
-          padding: '2rem 2rem 1.5rem',
           background: 'linear-gradient(160deg, var(--bg-elevated), var(--bg-card))',
           borderBottom: '1px solid var(--border)',
         }}
@@ -171,7 +170,7 @@ export default function ProjectCard({ project, variant = 'featured' }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginBottom: '1rem',
+            marginBottom: '0.85rem',
             flexWrap: 'wrap',
             gap: '0.5rem',
           }}
@@ -195,7 +194,7 @@ export default function ProjectCard({ project, variant = 'featured' }) {
         <h3
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)',
+            fontSize: 'clamp(1.3rem, 2.5vw, 1.85rem)',
             fontWeight: 800,
             color: 'var(--text-primary)',
             letterSpacing: '-0.025em',
@@ -210,7 +209,7 @@ export default function ProjectCard({ project, variant = 'featured' }) {
         <p
           style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: '0.95rem',
+            fontSize: '0.9rem',
             fontWeight: 500,
             color: 'var(--text-secondary)',
             lineHeight: 1.5,
@@ -221,22 +220,22 @@ export default function ProjectCard({ project, variant = 'featured' }) {
       </div>
 
       {/* Body */}
-      <div style={{ padding: '1.75rem 2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div className="p-5 sm:p-7" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         {/* Metrics row */}
         {metrics.length > 0 && (
           <div
             style={{
               display: 'flex',
-              gap: '1.5rem',
+              gap: '1.25rem',
               flexWrap: 'wrap',
-              marginBottom: '1.5rem',
-              paddingBottom: '1.5rem',
+              marginBottom: '1.25rem',
+              paddingBottom: '1.25rem',
               borderBottom: '1px solid var(--border)',
             }}
           >
             {metrics.map(({ value, label }) => (
               <div key={label}>
-                <div className="metric-number" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)' }}>
+                <div className="metric-number" style={{ fontSize: 'clamp(1.3rem, 2.5vw, 2rem)' }}>
                   {value}
                 </div>
                 <div className="metric-label">{label}</div>
@@ -249,10 +248,10 @@ export default function ProjectCard({ project, variant = 'featured' }) {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '0.92rem',
+            fontSize: '0.9rem',
             color: 'var(--text-secondary)',
-            lineHeight: 1.65,
-            marginBottom: '1.5rem',
+            lineHeight: 1.6,
+            marginBottom: '1.25rem',
             flex: 1,
           }}
         >
@@ -260,18 +259,18 @@ export default function ProjectCard({ project, variant = 'featured' }) {
         </p>
 
         {/* Tech */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '1.75rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem' }}>
           {tech.map((t) => (
             <span key={t} className="tech-badge">{t}</span>
           ))}
         </div>
 
         {/* CTA */}
-        <Link to={caseStudyPath} className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
+        <Link to={caseStudyPath} className="btn btn-primary" style={{ alignSelf: 'flex-start', minHeight: '40px' }}>
           View Details
           <ArrowUpRight size={15} />
         </Link>
       </div>
     </div>
   );
-}
+}}

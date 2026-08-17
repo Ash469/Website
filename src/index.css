@@ -132,35 +132,36 @@ body {
   font-family: var(--font-body);
 }
 
-.font-mono {
-  font-family: var(--font-mono);
+.container-site {
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-/* ── h1: Maximum impact — Exo 2 900, very tight tracking ── */
+/* Fluid responsive typography */
 h1 {
   font-family: 'Exo 2', sans-serif;
   font-weight: 900;
   color: var(--text-primary);
   letter-spacing: -0.04em;
-  line-height: 0.96;
+  line-height: 0.98;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
 }
 
-/* ── h2: Section title — Exo 2 800 ── */
 h2 {
   font-family: 'Exo 2', sans-serif;
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: -0.03em;
-  line-height: 1.05;
+  line-height: 1.08;
+  font-size: clamp(1.6rem, 4vw, 3rem);
 }
 
-/* ── h3: Card/sub-title — Exo 2 700 ── */
 h3 {
   font-family: 'Exo 2', sans-serif;
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.025em;
   line-height: 1.2;
+  font-size: clamp(1.25rem, 2.5vw, 1.85rem);
 }
 
 /* ── h4: Small heading — Exo 2 600 ── */

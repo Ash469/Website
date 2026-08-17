@@ -75,9 +75,11 @@ export default function Navbar() {
           <button
             className="hamburger-btn"
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
+            style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyCenter: 'center' }}
           >
-            {menuOpen ? <X size={22} /> : <span style={{ fontSize: '1.25rem' }}>☰</span>}
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </header>
@@ -98,11 +100,11 @@ export default function Navbar() {
         <a
           href="#"
           className="btn btn-primary"
-          style={{ marginTop: '1.5rem', alignSelf: 'flex-start' }}
+          style={{ marginTop: '1.5rem', alignSelf: 'stretch', justifyContent: 'center', minHeight: '44px' }}
           target="_blank"
           rel="noreferrer"
         >
-          <FileText size={14} />
+          <FileText size={16} />
           Resume
         </a>
       </div>
