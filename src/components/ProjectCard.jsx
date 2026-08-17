@@ -273,4 +273,4 @@ export default function ProjectCard({ project, variant = 'featured' }) {
       </div>
     </div>
   );
-}}
+}

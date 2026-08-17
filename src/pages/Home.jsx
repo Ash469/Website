@@ -225,7 +225,13 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="container-site relative           {/* Experience in Bento layout (Techniche/Lotus span large (8), PIMS/AppMgmt span small (4)) */}
+        <div className="container-site relative z-20">
+          <div className="mb-12 reveal-el">
+            <span className="section-eyebrow">Professional History</span>
+            <h2 className="section-title mt-2">Active Engineering Impact</h2>
+          </div>
+
+          {/* Experience in Bento layout (Techniche/Lotus span large (8), PIMS/AppMgmt span small (4)) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-12">
             {professionalExperiences.map((exp, idx) => {
               const isLarge = idx === 0 || idx === 3;
@@ -425,22 +431,6 @@ export default function Home() {
 
                     {/* Spacer for desktop alignment */}
                     <div className="hidden md:block w-[50%]" />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>assName="inline-flex items-center gap-1 text-xs font-heading font-bold text-[#F28C54] hover:text-[#E8622A] transition-colors"
-                            >
-                              Details <ArrowUpRight className="w-3.5 h-3.5" />
-                            </Link>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Spacer for desktop alignment */}
-                    <div className="hidden md:block w-[58%]" />
                   </div>
                 );
               })}
