@@ -837,6 +837,10 @@ a {
   display: none !important;
 }
 
+.show-mobile-flex {
+  display: none !important;
+}
+
 @media (max-width: 1024px) {
   .hide-tablet {
     display: none !important;
@@ -850,6 +854,10 @@ a {
 
   .show-mobile {
     display: inline-block !important;
+  }
+
+  .show-mobile-flex {
+    display: flex !important;
   }
 
   h1 {
@@ -929,6 +937,7 @@ a {
   .bento-card-large {
     grid-column: span 12;
   }
+
   .bento-card-small {
     grid-column: span 12;
   }

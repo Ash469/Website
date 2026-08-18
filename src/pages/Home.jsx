@@ -68,10 +68,10 @@ export default function Home() {
     // Winding SVG path + timeline cards in a single fully-synchronized GSAP ScrollTimeline
     const path = containerRef.current.querySelector('.timeline-path');
     const timelineCards = containerRef.current.querySelectorAll('.timeline-card-el');
-    
+
     if (path && timelineCards.length > 0) {
       const pathLength = path.getTotalLength();
-      
+
       // Initialize SVG path to hidden and cards to dim initial states
       gsap.set(path, {
         strokeDasharray: pathLength,
@@ -94,7 +94,7 @@ export default function Home() {
 
       // Trigger card fades sequentially exactly as the path reaches their junctions
       timelineCards.forEach((card, idx) => {
-        const triggerTime = idx * 1.05 + 0.35; 
+        const triggerTime = idx * 1.05 + 0.35;
         tl.to(card, {
           opacity: 1,
           scale: 1,
@@ -203,13 +203,13 @@ export default function Home() {
   ];
 
   // Project section: Filter school-management, nss, udgam, step-wars, smart-return
-  const homeProjects = projects.filter(p => 
+  const homeProjects = projects.filter(p =>
     ['school-management', 'nss', 'udgam', 'step-wars', 'smart-return'].includes(p.id)
   );
 
   return (
     <div ref={containerRef} className="bg-[#0C0A08] relative overflow-hidden text-[#F5F0E8]">
-      
+
       {/* Hero Section */}
       <HeroEditorial />
 
@@ -217,7 +217,7 @@ export default function Home() {
           EXPERIENCE SECTION (BENTO LAYOUT)
       ══════════════════════════════════════════════════ */}
       <section className="py-24 relative bg-[#141210] curve-section-wrapper">
-        
+
         {/* Top Curve Separator */}
         <div className="curve-divider-top">
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -321,7 +321,7 @@ export default function Home() {
           CAMPUS INVOLVEMENT (CURVED TIMELINE LAYOUT)
       ══════════════════════════════════════════════════ */}
       <section className="py-24 relative bg-[#141210] curve-section-wrapper timeline-wrapper-el">
-        
+
         {/* Top Wave Curve (Deep parabola curve pointing down) */}
         <div className="curve-divider-top" style={{ height: '95px' }}>
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style={{ height: '95px', width: '100%' }}>
@@ -337,11 +337,11 @@ export default function Home() {
 
           {/* Curved Timeline Wrapper */}
           <div className="relative w-full mx-auto">
-            
+
             {/* Desktop: Curved SVG Timeline Line */}
-            <svg 
-              className="absolute hidden md:block left-1/2 top-0 bottom-0 w-32 h-full transform -translate-x-1/2 pointer-events-none z-10" 
-              viewBox="0 0 100 1000" 
+            <svg
+              className="absolute hidden md:block left-1/2 top-0 bottom-0 w-32 h-full transform -translate-x-1/2 pointer-events-none z-10"
+              viewBox="0 0 100 1000"
               preserveAspectRatio="none"
             >
               <path
@@ -361,12 +361,12 @@ export default function Home() {
                 const isEven = idx % 2 === 0;
                 return (
                   <div key={idx} className={`relative flex flex-col md:flex-row items-stretch ${isEven ? 'md:flex-row-reverse' : ''}`}>
-                    
+
                     {/* Node Dot */}
-                    <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-[#0C0A08] border-2 border-orange-500 transform -translate-x-1/2 top-7 z-30 shadow-[0_0_8px_#E8622A]" />
+                    <div className="absolute left-3 md:left-1/2 w-4 h-4 rounded-full bg-[#0C0A08] border-2 border-orange-500 transform -translate-x-1/2 top-7 z-30 shadow-[0_0_8px_#E8622A]" />
 
                     {/* Timeline card container */}
-                    <div className={`w-full md:w-[45%] lg:w-[42%] ml-10 md:ml-0 ${isEven ? 'md:mr-8 lg:mr-16' : 'md:ml-8 lg:ml-16'} bg-[#1E1A16] border border-border-warm rounded-[28px] sm:rounded-[32px] p-2.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] hover:shadow-card-hover hover:border-orange-500/30 transition-all duration-300 relative group timeline-card-el`}>
+                    <div className={`w-[calc(100%-2rem)] ml-8 md:ml-0 md:w-[45%] lg:w-[42%] ${isEven ? 'md:mr-8 lg:mr-16' : 'md:ml-8 lg:ml-16'} bg-[#1E1A16] border border-border-warm rounded-[24px] sm:rounded-[32px] p-2 sm:p-2.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] hover:shadow-card-hover hover:border-orange-500/30 transition-all duration-300 relative group timeline-card-el`}>
                       
                       {/* Device Top Speaker/Camera punch-hole */}
                       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-[#0C0A08] border border-[#2A2420] flex items-center justify-center shadow-inner z-20">
@@ -374,7 +374,7 @@ export default function Home() {
                       </div>
 
                       {/* Inner Screen Layer */}
-                      <div className="bg-[#141210] rounded-[20px] sm:rounded-[24px] pt-8 px-4 sm:px-6 pb-6 border border-[#2A2420] h-full flex flex-col justify-between">
+                      <div className="bg-[#141210] rounded-[18px] sm:rounded-[24px] pt-8 px-3.5 sm:px-6 pb-5 border border-[#2A2420] h-full flex flex-col justify-between">
                         <div>
                           {/* Serif Index Number */}
                           <div className="font-serif italic text-2xl sm:text-3xl text-orange-500/50 mb-3 select-none">
@@ -382,15 +382,15 @@ export default function Home() {
                           </div>
 
                           <div className="flex items-center justify-between gap-3 mb-4 pb-2 border-b border-[#2A2420]">
-                            <div className="flex items-center gap-3">
-                              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-bg-surface border border-[#2A2420] overflow-hidden flex items-center justify-center shrink-0 p-1">
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-bg-surface border border-[#2A2420] overflow-hidden flex items-center justify-center shrink-0 p-1">
                                 {role.logo ? (
                                   <img src={role.logo} alt={role.organization} className="w-full h-full object-contain rounded-md" />
                                 ) : (
-                                  <Award className="w-5 h-5 text-orange-500" />
+                                  <Award className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
                                 )}
                               </div>
-                              <h3 className="font-display text-xs sm:text-sm md:text-base font-bold text-text-primary group-hover:text-orange-400 transition-colors">
+                              <h3 className="font-display text-xs sm:text-sm md:text-base font-bold text-text-primary group-hover:text-orange-400 transition-colors truncate">
                                 {role.organization}
                               </h3>
                             </div>
@@ -399,9 +399,9 @@ export default function Home() {
                           {/* Multi-role mapping */}
                           <div className="space-y-3 my-4">
                             {role.roles.map((r, rIdx) => (
-                              <div key={rIdx} className="flex flex-col sm:flex-row justify-between text-xs font-heading gap-1">
-                                <span className="font-semibold text-text-secondary">{r.title}</span>
-                                <span className="font-mono text-text-muted text-[10px]">{r.duration}</span>
+                              <div key={rIdx} className="flex flex-col sm:flex-row justify-between text-xs font-heading gap-0.5">
+                                <span className="font-semibold text-text-secondary leading-snug">{r.title}</span>
+                                <span className="font-mono text-text-muted text-[10px] shrink-0">{r.duration}</span>
                               </div>
                             ))}
                           </div>
@@ -413,14 +413,14 @@ export default function Home() {
                           )}
                         </div>
 
-                        <div className="pt-3 border-t border-[#2A2420] flex items-center justify-between mt-4">
+                        <div className="pt-3 border-t border-[#2A2420] flex items-center justify-between mt-4 flex-wrap gap-2">
                           <span className="font-mono text-[9px] text-orange-400 font-bold uppercase tracking-wider">
                             {role.skills}
                           </span>
                           {role.path !== '#' && (
                             <Link
                               to={role.path}
-                              className="inline-flex items-center gap-1 text-xs font-heading font-bold text-[#F28C54] hover:text-[#E8622A] transition-colors"
+                              className="inline-flex items-center gap-1 text-xs font-heading font-bold text-[#F28C54] hover:text-[#E8622A] transition-colors ml-auto"
                             >
                               Details <ArrowUpRight className="w-3.5 h-3.5" />
                             </Link>
@@ -457,7 +457,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
+
             {/* Frontend */}
             <div className="reveal-el bg-[#141210] border border-border-subtle p-6 rounded-3xl flex flex-col justify-between">
               <div>
@@ -521,8 +521,8 @@ export default function Home() {
           <div className="marquee-inner flex gap-12 text-[3vw] lg:text-[2rem] font-display font-black uppercase text-neutral-600/40">
             {/* Multiply phrase list to ensure seamless looping block */}
             {Array(4).fill(marqueePhrases).flat().map((phrase, idx) => (
-              <span 
-                key={idx} 
+              <span
+                key={idx}
                 className="hover:text-orange-500 hover:scale-105 transition-all duration-300 cursor-pointer select-none inline-block"
               >
                 * {phrase}
@@ -538,7 +538,7 @@ export default function Home() {
       <section id="contact" className="py-24 relative bg-[#0C0A08] z-20">
         <div className="container-site">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
+
             {/* Left side details */}
             <div className="lg:col-span-5 reveal-el">
               <span className="section-eyebrow">Get in touch</span>

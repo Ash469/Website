@@ -71,13 +71,12 @@ export default function Navbar() {
             Resume <span>↗</span>
           </a>
 
-          {/* Hamburger */}
+          {/* Hamburger (Mobile Only) */}
           <button
-            className="hamburger-btn"
+            className="hamburger-btn show-mobile-flex"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyCenter: 'center' }}
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
