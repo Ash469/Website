@@ -60,7 +60,7 @@ export default function HeroEditorial() {
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              
+
               {/* AYUSH Text overlayed on top/bottom of portrait */}
               <div className="absolute bottom-2 left-0 right-0 text-center pointer-events-none select-none z-20">
                 <h1

@@ -7,32 +7,35 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }) {
   useEffect(() => {
-    // Instantiate Lenis smooth scroll
+    // Instantiate Lenis smooth scroll with smooth easing
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      smoothTouch: false,
+      smoothTouch: true,
+      touchMultiplier: 1.5,
+      wheelMultiplier: 1.0,
     });
 
-    // Update ScrollTrigger coordinates on every scroll tick
+    // Sync Lenis scroll updates with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 
-    // Native animation frame loop for highest performance
-    let rafId;
-    const updateScroll = (time) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(updateScroll);
+    // Bind GSAP Ticker to Lenis RAF loop for perfectly fluid scroll animations
+    const updateTicker = (time) => {
+      lenis.raf(time * 1000);
     };
-    rafId = requestAnimationFrame(updateScroll);
+
+    gsap.ticker.add(updateTicker);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
+      gsap.ticker.remove(updateTicker);
       lenis.destroy();
-      cancelAnimationFrame(rafId);
     };
   }, []);
 
   return <>{children}</>;
 }
+

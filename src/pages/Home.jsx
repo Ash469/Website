@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Code, Server, Database, Award } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Code, Server, Database, Award, Train } from 'lucide-react';
 import ProjectCard from '../components/ProjectCard';
 import { projects } from '../data/projectsData';
 import { HexagonBackground } from '../components/HexagonBackground';
@@ -65,48 +65,60 @@ export default function Home() {
       },
     });
 
-    // Winding SVG path + timeline cards in a single fully-synchronized GSAP ScrollTimeline
+    // Winding SVG path + traveling train character in synchronized GSAP ScrollTimeline
     const path = containerRef.current.querySelector('.timeline-path');
+    const trainGroup = containerRef.current.querySelector('.train-runner-group');
     const timelineCards = containerRef.current.querySelectorAll('.timeline-card-el');
 
     if (path && timelineCards.length > 0) {
       const pathLength = path.getTotalLength();
 
-      // Initialize SVG path to hidden and cards to dim initial states
+      // Set initial SVG path dashoffset and train icon start position
       gsap.set(path, {
-        strokeDasharray: pathLength,
         strokeDashoffset: pathLength
       });
-      gsap.set(timelineCards, { opacity: 0.05, scale: 0.92, y: 30 });
+      if (trainGroup) {
+        const startPt = path.getPointAtLength(0);
+        gsap.set(trainGroup, { x: startPt.x, y: startPt.y, transformOrigin: 'center center' });
+      }
+      gsap.set(timelineCards, { opacity: 0.1, scale: 0.94, y: 30 });
 
-      // Create a master scrub timeline for the timeline section
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.timeline-wrapper-el',
-          start: 'top 55%', // Starts drawing when timeline top reaches 55% viewport height
-          end: 'bottom 65%', // Finishes near bottom
-          scrub: 1,
+          start: 'top 60%',   
+          end: 'bottom 40%', 
+          scrub: 0.5,        
         }
       });
 
-      // Animate path drawing across the timeline duration (4 seconds block)
-      tl.to(path, { strokeDashoffset: 0, duration: 4, ease: 'none' });
+      tl.to(path, {
+        strokeDashoffset: 0,
+        duration: 8,
+        ease: 'none',
+        onUpdate: function () {
+          if (trainGroup) {
+            const p = this.progress();
+            const pt = path.getPointAtLength(p * pathLength);
+            gsap.set(trainGroup, { x: pt.x, y: pt.y });
+          }
+        }
+      });
 
-      // Trigger card fades sequentially exactly as the path reaches their junctions
       timelineCards.forEach((card, idx) => {
-        const triggerTime = idx * 1.05 + 0.35;
+        const triggerTime = idx * 2.0 + 0.6;
         tl.to(card, {
           opacity: 1,
           scale: 1,
           y: 0,
-          duration: 0.45,
+          duration: 1.2,
           ease: 'power1.out'
         }, triggerTime);
       });
     }
   }, []);
 
-  // Professional Experiences in specified order
+
   const professionalExperiences = [
     {
       id: 'techniche',
@@ -218,10 +230,11 @@ export default function Home() {
       ══════════════════════════════════════════════════ */}
       <section className="py-24 relative bg-[#141210] curve-section-wrapper">
 
-        {/* Top Curve Separator */}
-        <div className="curve-divider-top">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        {/* Top Curve Separator with Curved Dotted Accent Track */}
+        <div className="curve-divider-top overflow-hidden">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-full">
             <path d="M0,0 C400,120 800,0 1200,120 L1200,120 L0,120 Z" className="shape-fill" fill="#141210"></path>
+            <path d="M0,0 C400,120 800,0 1200,120" fill="none" stroke="#E8622A" strokeWidth="2.5" strokeDasharray="6 8" opacity="0.6"></path>
           </svg>
         </div>
 
@@ -278,10 +291,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom Curve Separator */}
-        <div className="curve-divider-bottom">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        {/* Bottom Curve Separator with Dotted Track */}
+        <div className="curve-divider-bottom overflow-hidden">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-full">
             <path d="M0,120 C400,0 800,120 1200,0 L1200,0 L0,0 Z" className="shape-fill" fill="#141210"></path>
+            <path d="M0,120 C400,0 800,120 1200,0" fill="none" stroke="#E8622A" strokeWidth="2.5" strokeDasharray="6 8" opacity="0.6"></path>
           </svg>
         </div>
       </section>
@@ -322,10 +336,11 @@ export default function Home() {
       ══════════════════════════════════════════════════ */}
       <section className="py-24 relative bg-[#141210] curve-section-wrapper timeline-wrapper-el">
 
-        {/* Top Wave Curve (Deep parabola curve pointing down) */}
-        <div className="curve-divider-top" style={{ height: '95px' }}>
+        {/* Top Wave Curve with Dotted Track */}
+        <div className="curve-divider-top overflow-hidden" style={{ height: '95px' }}>
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style={{ height: '95px', width: '100%' }}>
             <path d="M0,0 Q600,220 1200,0 L1200,120 L0,120 Z" className="shape-fill" fill="#141210"></path>
+            <path d="M0,0 Q600,220 1200,0" fill="none" stroke="#E8622A" strokeWidth="2.5" strokeDasharray="6 8" opacity="0.6"></path>
           </svg>
         </div>
 
@@ -335,39 +350,83 @@ export default function Home() {
             <h2 className="section-title mt-2">IIT Guwahati Activities & Societies</h2>
           </div>
 
-          {/* Curved Timeline Wrapper */}
-          <div className="relative w-full mx-auto">
+          {/* Winding Train Track Layout Wrapper */}
+          <div className="relative w-full mx-auto py-8">
 
-            {/* Desktop: Curved SVG Timeline Line */}
+            {/* Desktop: Single Winding Curved Dotted Track SVG */}
             <svg
-              className="absolute hidden md:block left-1/2 top-0 bottom-0 w-32 h-full transform -translate-x-1/2 pointer-events-none z-10"
-              viewBox="0 0 100 1000"
+              className="absolute hidden md:block left-0 top-0 w-full h-full pointer-events-none z-10"
+              viewBox="0 0 1000 1200"
               preserveAspectRatio="none"
             >
+              {/* Static Background Dotted Guide Line */}
               <path
-                className="timeline-path stroke-orange-500 fill-none"
-                strokeWidth="2.5"
+                className="stroke-orange-500/25 fill-none"
+                strokeWidth="3"
+                strokeDasharray="6 8"
                 strokeLinecap="round"
                 vectorEffect="non-scaling-stroke"
-                d="M 50,0 C 90,150 10,250 50,400 C 90,550 10,650 50,800 C 90,920 15,960 50,1000"
+                d="M 200,0 C 700,200 850,350 750,550 C 650,750 150,850 350,1150 C 450,1250 700,1300 800,1400"
               />
+              {/* Animated Main Single Dotted Path */}
+              <path
+                className="timeline-path stroke-orange-500 fill-none"
+                strokeWidth="3.5"
+                strokeDasharray="6 8"
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+                d="M 200,0 C 700,200 850,350 750,550 C 650,750 150,850 350,1150 C 450,1250 700,1300 800,1400"
+              />
+              {/* Traveling Train Engine / Character Beacon SVG Group */}
+              <g className="train-runner-group">
+                {/* Outer Glow Halo */}
+                <circle r="22" fill="#E8622A" opacity="0.25" />
+                {/* Dark Base Circle */}
+                <circle r="16" fill="#0C0A08" stroke="#E8622A" strokeWidth="2.5" />
+                {/* Inner Pulsing Cyan Core */}
+                <circle r="5" fill="#00D2FF" />
+                {/* Train Emoji Badge */}
+                <text x="0" y="5" textAnchor="middle" fontSize="15" fill="#F28C54">
+                  🚂
+                </text>
+              </g>
             </svg>
 
-            {/* Mobile: Straight line fallback */}
-            <div className="absolute left-4 md:hidden top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-[#D4A853]/50 to-neutral-800 transform" />
 
-            <div className="space-y-12">
+            <div className="absolute left-4 md:hidden top-0 bottom-0 w-0 border-l-2 border-dashed border-orange-500/70 transform" />
+
+            <div className="space-y-16 md:space-y-20">
               {collegeRoles.map((role, idx) => {
-                const isEven = idx % 2 === 0;
+                const layoutOffsets = [
+                  'md:mr-auto md:ml-4 lg:ml-8 md:w-[50%] lg:w-[46%]',
+                  'md:ml-auto md:mr-6 lg:mr-12 md:w-[48%] lg:w-[44%]',
+                  'md:mr-auto md:ml-12 lg:ml-20 md:w-[52%] lg:w-[47%]',
+                  'md:ml-auto md:mr-4 lg:mr-8 md:w-[46%] lg:w-[42%]',
+                ];
+                const cardLayoutClass = layoutOffsets[idx % layoutOffsets.length];
+
                 return (
-                  <div key={idx} className={`relative flex flex-col md:flex-row items-stretch ${isEven ? 'md:flex-row-reverse' : ''}`}>
+                  <div key={idx} className="relative flex flex-col md:flex-row items-center w-full">
 
-                    {/* Node Dot */}
-                    <div className="absolute left-3 md:left-1/2 w-4 h-4 rounded-full bg-[#0C0A08] border-2 border-orange-500 transform -translate-x-1/2 top-7 z-30 shadow-[0_0_8px_#E8622A]" />
+                    {/* Winding Track Station Node Badge */}
+                    <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 z-30 items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-[#0C0A08] border-2 border-orange-500 shadow-[0_0_12px_#E8622A] flex items-center justify-center">
+                        <div className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-ping" />
+                      </div>
+                    </div>
 
-                    {/* Timeline card container */}
-                    <div className={`w-[calc(100%-2rem)] ml-8 md:ml-0 md:w-[45%] lg:w-[42%] ${isEven ? 'md:mr-8 lg:mr-16' : 'md:ml-8 lg:ml-16'} bg-[#1E1A16] border border-border-warm rounded-[24px] sm:rounded-[32px] p-2 sm:p-2.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] hover:shadow-card-hover hover:border-orange-500/30 transition-all duration-300 relative group timeline-card-el`}>
-                      
+                    {/* Mobile Node Dot */}
+                    <div className="absolute left-3 md:hidden w-4 h-4 rounded-full bg-[#0C0A08] border-2 border-orange-500 transform -translate-x-1/2 top-7 z-30 shadow-[0_0_8px_#E8622A]" />
+
+                    {/* Organic Positioned Timeline Card */}
+                    <div className={`w-[calc(100%-2rem)] ml-8 md:ml-0 ${cardLayoutClass} bg-[#1E1A16] border border-border-warm rounded-[24px] sm:rounded-[32px] p-2 sm:p-2.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)] hover:shadow-card-hover hover:border-orange-500/40 transition-all duration-300 relative group timeline-card-el z-20`}>
+
+                      {/* Station Top Track Marker */}
+                      <div className="absolute -top-3 left-6 bg-[#0C0A08] border border-orange-500/40 px-2.5 py-0.5 rounded-full text-[9px] font-mono text-orange-400 uppercase tracking-widest flex items-center gap-1.5 shadow-md">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                        STOP 0{idx + 1}
+                      </div>
+
                       {/* Device Top Speaker/Camera punch-hole */}
                       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-[#0C0A08] border border-[#2A2420] flex items-center justify-center shadow-inner z-20">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#141210]" />
@@ -429,8 +488,6 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Spacer for desktop alignment */}
-                    <div className="hidden md:block w-[50%]" />
                   </div>
                 );
               })}
@@ -438,10 +495,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom Wave Curve */}
-        <div className="curve-divider-bottom">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        {/* Bottom Wave Curve with Dotted Track */}
+        <div className="curve-divider-bottom overflow-hidden">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-full">
             <path d="M0,120 C400,0 800,120 1200,0 L1200,0 L0,0 Z" className="shape-fill" fill="#141210"></path>
+            <path d="M0,120 C400,0 800,120 1200,0" fill="none" stroke="#E8622A" strokeWidth="2.5" strokeDasharray="6 8" opacity="0.6"></path>
           </svg>
         </div>
       </section>
